@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BAM'S BARBERS — Larnaka · Est. 2015</title>
+<meta name="description" content="BAM'S BARBERS — Larnaka's finest barbershop since 2015. 25 years of West End London experience. Skin fades, classic cuts, beard grooming. 4.9★ from 647 reviews."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet"/>
+<style>
+/* ═══ RESET ═══ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:#08070A;color:#EDE4D6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+
+/* ═══ DESIGN TOKENS ═══ */
+:root{
+  --bg:     #08070A;
+  --s1:     #100F13;
+  --s2:     #16151A;
+  --s3:     #1E1C22;
+  --gold:   #BF9A3D;
+  --gold-t: #D4AC52;
+  --gold-d: #7A6022;
+  --cream:  #EDE4D6;
+  --dim:    #8A8077;
+  --line:   rgba(191,154,61,.2);
+  --line2:  rgba(191,154,61,.4);
+  --red:    #9B2424;
+  --max:    1160px;
+}
+
+/* ═══ TYPOGRAPHY ═══ */
+h1,h2,h3,.serif{font-family:'Bodoni Moda',serif;line-height:1.05}
+.script{font-family:'Pinyon Script',cursive;color:var(--gold-t);font-weight:400;line-height:1}
+.eyebrow{font-family:'Jost',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.45em;color:var(--gold)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 40px}
+
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:15px 34px;border-radius:1px;transition:.28s ease;border:1px solid transparent;cursor:pointer}
+.btn-gold{background:var(--gold);color:#0D0B00;border-color:var(--gold)}
+.btn-gold:hover{background:var(--gold-t);border-color:var(--gold-t);transform:translateY(-2px)}
+.btn-outline{border-color:var(--line2);color:var(--cream)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-t)}
+.btn-sm{padding:11px 22px;font-size:.75rem}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;transition:.35s ease}
+.nav.on{background:rgba(8,7,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:42px;height:42px;border:1px solid var(--gold-d);border-radius:50%;display:grid;place-items:center;font-family:'Bodoni Moda',serif;font-size:1.1rem;font-weight:700;color:var(--gold-t);transition:.3s}
+.logo:hover .logo-mark{border-color:var(--gold-t)}
+.logo-name{font-family:'Bodoni Moda',serif;font-size:1.15rem;font-weight:700;letter-spacing:.06em;line-height:1.1}
+.logo-name small{display:block;font-family:'Jost',sans-serif;font-size:.55rem;font-weight:400;letter-spacing:.42em;color:var(--gold);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.16em;color:var(--dim);transition:.2s}
+.nav-links a:hover{color:var(--cream)}
+.nav-book{padding:10px 22px;font-size:.74rem}
+.burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:22px;height:1.5px;background:var(--cream);transition:.3s;display:block}
+.burger.x span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0;transform:translateX(8px)}
+.burger.x span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#0D0B10,#08070A 60%,#0B0908)}
+/* Subtle diagonal texture */
+.hero-tex{position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 60px);pointer-events:none}
+/* Vertical gold rule right of center */
+.hero-rule{position:absolute;top:0;bottom:0;left:55%;width:1px;background:linear-gradient(transparent 5%,var(--line) 30%,var(--line) 70%,transparent 95%)}
+.hero-body{position:relative;z-index:2;padding:130px 0 90px;display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center}
+
+/* Floating hair strands */
+.hairs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hair{position:absolute;top:-20px;opacity:0;animation:hairFall linear infinite}
+@keyframes hairFall{
+  0%{opacity:0;transform:translateY(0) rotate(var(--r)) scaleX(1)}
+  8%{opacity:.18}
+  92%{opacity:.18}
+  100%{opacity:0;transform:translateY(110vh) rotate(calc(var(--r) + 15deg)) scaleX(.8)}
+}
+
+/* Hero text reveal */
+.hero-tag{display:flex;align-items:center;gap:14px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .2s ease forwards}
+.hero-tag::after{content:"";height:1px;width:60px;background:var(--gold-d)}
+.hero-h1{opacity:0;animation:fadeUp .8s .35s ease forwards}
+.hero-h1 .line1{font-size:clamp(4rem,8.5vw,7.5rem);font-weight:900;color:#FFF;display:block;letter-spacing:-.02em}
+.hero-h1 .line2{font-size:clamp(3rem,6.5vw,5.8rem);font-weight:400;font-style:italic;color:var(--gold-t);display:block;margin-top:-.2em;letter-spacing:.01em}
+.hero-sub{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(.95rem,1.6vw,1.2rem);color:var(--dim);line-height:1.7;max-width:500px;margin:20px 0 32px;opacity:0;animation:fadeUp .8s .5s ease forwards}
+.hero-sub strong{color:var(--cream);font-style:normal;font-weight:400}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;opacity:0;animation:fadeUp .8s .65s ease forwards}
+.hero-badge{display:inline-flex;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:20px;opacity:0;animation:fadeUp .8s .8s ease forwards}
+.badge-num{font-family:'Bodoni Moda',serif;font-size:2.4rem;font-weight:700;color:var(--gold-t);line-height:1}
+.badge-stars{color:var(--gold);font-size:.9rem;letter-spacing:2px;display:block}
+.badge-txt{font-size:.78rem;color:var(--dim)}
+
+/* Hero right — barber pole + badge */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeIn 1s .9s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}from{opacity:0;transform:translateY(22px)}}
+@keyframes fadeIn{to{opacity:1}from{opacity:0}}
+
+/* BARBER POLE */
+.pole-container{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
+.pole-top,.pole-bot{width:28px;height:18px;background:#DDD;border-radius:4px 4px 0 0}
+.pole-bot{border-radius:0 0 4px 4px}
+.pole-wrap{width:28px;height:220px;border-radius:14px;overflow:hidden;position:relative;border:2px solid #ccc}
+.pole-stripes{position:absolute;inset:-200% 0;background:repeating-linear-gradient(-55deg,var(--red) 0 28px,#F5F5F5 28px 56px,#1B3A6B 56px 84px);animation:poleScroll 2s linear infinite}
+@keyframes poleScroll{to{transform:translateY(-84px)}}
+.pole-globe{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFF 0%,#DDD 50%,#AAA);border:2px solid #ccc;margin-bottom:4px}
+
+/* Est circle badge */
+.est-ring{position:absolute;right:-20px;top:50%;transform:translateY(-50%)}
+.est-circle{width:190px;height:190px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;text-align:center;position:relative}
+.est-inner{font-family:'Bodoni Moda',serif}
+.est-inner b{font-size:2.8rem;font-weight:900;color:var(--gold-t);display:block;line-height:1}
+.est-inner span{font-size:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.4em;color:var(--dim);display:block;margin-top:4px}
+.est-orbit{position:absolute;inset:0;animation:orbit 25s linear infinite}
+.est-orbit svg{width:100%;height:100%}
+@keyframes orbit{to{transform:rotate(360deg)}}
+
+/* ═══ MARQUEE ═══ */
+.marquee{background:var(--s1);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:scroll 32s linear infinite}
+.marquee-track span{padding:16px 40px;font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.3em;color:var(--dim);border-right:1px solid var(--line);white-space:nowrap}
+.marquee-track span.g{color:var(--gold)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ═══ SECTION BASE ═══ */
+.sec{padding:110px 0}
+.sec-sm{padding:80px 0}
+.sh{text-align:center;max-width:600px;margin:0 auto 60px}
+.sh .script{font-size:1.9rem;display:block;margin-bottom:4px}
+.sh h2{font-size:clamp(2.3rem,4.5vw,3.4rem);font-weight:700;color:#fff;margin:.2rem 0 .9rem}
+.sh p{color:var(--dim);font-size:.97rem;line-height:1.8}
+.sh-rule{width:40px;height:1px;background:var(--gold);margin:18px auto 0}
+
+/* ═══ BIG SCISSORS DIVIDER ═══ */
+.big-snip{position:relative;height:110px;overflow:hidden;display:flex;align-items:center;background:var(--bg)}
+.snip-gold-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 2%,var(--gold-d) 15%,var(--gold-d) 85%,transparent 98%)}
+.snip-label{position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:.65rem;text-transform:uppercase;letter-spacing:.4em;color:var(--gold-d)}
+/* Scissors SVG wrapper */
+.big-snip-svg{position:absolute;left:-380px;top:50%;transform:translateY(-50%);width:320px;height:80px}
+.big-snip.cut .big-snip-svg{animation:bigCut 2.8s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes bigCut{
+  0%  {left:-380px;opacity:0}
+  6%  {opacity:1}
+  94% {opacity:1}
+  100%{left:calc(100% + 380px);opacity:0}
+}
+/* Blade open/close — the top blade rotates on pivot */
+.sc-top{transform-origin:50% 50%;animation:none}
+.big-snip.cut .sc-top{animation:bladeWork .45s ease-in-out infinite}
+@keyframes bladeWork{0%,100%{transform:rotate(0)}50%{transform:rotate(-22deg)}}
+/* Cut reveal — the line gets "sliced" behind scissors */
+.snip-cut-reveal{position:absolute;left:0;width:0;height:100%;background:linear-gradient(90deg,transparent,rgba(191,154,61,.06));transition:none}
+.big-snip.cut .snip-cut-reveal{animation:revealCut 2.8s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes revealCut{0%{width:0}100%{width:100%}}
+
+/* ═══ GALLERY ═══ */
+.gallery-bg{background:var(--s1)}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:4px}
+.g1{grid-column:1/6;grid-row:1/3}
+.g2{grid-column:6/9;grid-row:1/2}
+.g3{grid-column:9/13;grid-row:1/2}
+.g4{grid-column:6/9;grid-row:2/3}
+.g5{grid-column:9/13;grid-row:2/3}
+.g6{grid-column:1/5;grid-row:3/4}
+.g7{grid-column:5/13;grid-row:3/4}
+.gal-item{overflow:hidden;position:relative}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s ease;filter:brightness(.88) contrast(1.05)}
+.gal-item:hover img{filter:brightness(1) contrast(1.05);transform:scale(1.04)}
+.g1 img,.g7 img{min-height:340px}
+.g2 img,.g3 img,.g4 img,.g5 img,.g6 img{min-height:200px}
+
+/* ═══ CLIPPER DIVIDER ═══ */
+.clipper-bar{position:relative;height:90px;overflow:hidden;display:flex;align-items:center;background:var(--bg)}
+.clipper-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 2%,var(--gold-d) 15%,var(--gold-d) 85%,transparent 98%)}
+.clipper-svg-wrap{position:absolute;right:-260px;top:50%;transform:translateY(-50%)}
+.clipper-bar.buzz .clipper-svg-wrap{animation:clipperSlide 3s cubic-bezier(.25,.7,.2,1) forwards}
+@keyframes clipperSlide{0%{right:-260px;opacity:0}7%{opacity:1}93%{opacity:1}100%{right:calc(100% + 260px);opacity:0}}
+.clipper-svg-wrap svg .clipper-body{animation:none}
+.clipper-bar.buzz .clipper-svg-wrap svg .clipper-buzz{animation:buzz .06s linear infinite}
+@keyframes buzz{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+
+/* ═══ SERVICES ═══ */
+.svc-layout{display:grid;grid-template-columns:300px 1fr;gap:0;border:1px solid var(--line)}
+.svc-sidebar{background:var(--s2);padding:0;border-right:1px solid var(--line)}
+.svc-tab{padding:22px 28px;cursor:pointer;border-bottom:1px solid var(--line);transition:.2s;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.svc-tab:last-child{border-bottom:0}
+.svc-tab.active{background:var(--s3);border-right:2px solid var(--gold)}
+.svc-tab h3{font-family:'Bodoni Moda',serif;font-size:1.1rem;color:#fff;font-weight:700}
+.svc-tab span{font-size:.72rem;color:var(--dim)}
+.svc-tab .arrow{color:var(--gold-d);transition:.2s}
+.svc-tab.active .arrow{color:var(--gold-t)}
+.svc-panel{background:var(--s1);padding:40px}
+.svc-panel-inner{display:none}
+.svc-panel-inner.show{display:block}
+.svc-panel h3{font-family:'Bodoni Moda',serif;font-size:1.5rem;color:var(--gold-t);font-weight:700;margin-bottom:6px}
+.svc-panel .sub{font-size:.8rem;color:var(--dim);margin-bottom:28px}
+.svc-row{display:flex;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.svc-row:last-child{border-bottom:0}
+.svc-row:hover{background:rgba(191,154,61,.04);margin:0 -20px;padding:15px 20px}
+.svc-row .nm{flex:1;font-size:.96rem}
+.svc-row .dur{font-size:.75rem;color:var(--dim);white-space:nowrap}
+.svc-row .pr{font-family:'Bodoni Moda',serif;font-size:1.25rem;font-weight:700;color:var(--cream);white-space:nowrap}
+.svc-row.feat .pr{color:var(--gold-t)}
+.svc-row.feat .nm::after{content:" ★";color:var(--gold);font-size:.8rem}
+.svc-book-cta{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+
+/* ═══ TEAM ═══ */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.barber{background:var(--s1);padding:52px 36px 44px;text-align:center;position:relative;transition:.3s;overflow:hidden}
+.barber::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:.35s;transform-origin:left}
+.barber:hover::after{transform:scaleX(1)}
+.barber:hover{background:var(--s2)}
+.b-photo{width:140px;height:140px;border-radius:50%;margin:0 auto 26px;overflow:hidden;border:1px solid var(--gold-d);padding:3px;transition:.35s;position:relative}
+.barber:hover .b-photo{border-color:var(--gold-t)}
+.b-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top}
+.b-name{font-family:'Bodoni Moda',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:4px}
+.b-role{font-size:.69rem;text-transform:uppercase;letter-spacing:.3em;color:var(--gold);margin-bottom:16px}
+.b-bio{font-size:.87rem;color:var(--dim);line-height:1.75;max-width:260px;margin:0 auto 24px}
+.b-btn{display:inline-flex;align-items:center;gap:7px;font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--gold-d);transition:.25s;border:1px solid var(--line);padding:9px 18px;border-radius:1px}
+.barber:hover .b-btn{color:var(--gold-t);border-color:var(--gold-t)}
+
+/* ═══ ABOUT ═══ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+.about-img-col{position:relative;overflow:hidden;min-height:580px}
+.about-img-col img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) contrast(1.08)}
+.about-img-col .overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--bg))}
+.about-text-col{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line)}
+.about-text-col .eyebrow{margin-bottom:14px;display:block}
+.about-text-col h2{font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:28px}
+.about-text-col p{color:var(--dim);line-height:1.9;font-size:.96rem;margin-bottom:1.1rem}
+.about-text-col p strong{color:var(--cream);font-weight:400}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:36px;padding-top:36px;border-top:1px solid var(--line)}
+.astat{text-align:center;padding:20px 10px;border-right:1px solid var(--line)}
+.astat:last-child{border-right:0}
+.astat b{font-family:'Bodoni Moda',serif;font-size:2.4rem;font-weight:700;color:var(--gold-t);display:block;line-height:1}
+.astat span{font-size:.67rem;text-transform:uppercase;letter-spacing:.22em;color:var(--dim);display:block;margin-top:6px}
+
+/* ═══ COMB DIVIDER ═══ */
+.comb-bar{position:relative;height:80px;overflow:hidden;display:flex;align-items:center;background:var(--s1)}
+.comb-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 2%,var(--gold-d) 15%,var(--gold-d) 85%,transparent 98%)}
+.comb-wrap{position:absolute;left:-220px;top:50%;transform:translateY(-50%)}
+.comb-bar.slide .comb-wrap{animation:combSlide 3.4s ease forwards}
+@keyframes combSlide{0%{left:-220px;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(100% + 220px);opacity:0}}
+
+/* ═══ REVIEWS ═══ */
+.rev-bg{background:var(--s1)}
+.rev-hero{display:flex;align-items:center;justify-content:center;gap:60px;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.rev-big{font-family:'Bodoni Moda',serif;font-size:7rem;font-weight:900;color:var(--gold-t);line-height:1}
+.rev-stars{color:var(--gold);font-size:1.4rem;letter-spacing:5px;display:block;margin:6px 0 8px}
+.rev-count{color:var(--dim);font-size:.88rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.rev-card{background:var(--s1);padding:36px 30px;transition:.25s}
+.rev-card:hover{background:var(--s2)}
+.r-stars{color:var(--gold);letter-spacing:3px;margin-bottom:18px;font-size:.9rem}
+.r-text{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.05rem;color:var(--cream);line-height:1.75;margin-bottom:22px}
+.r-name{font-size:.7rem;text-transform:uppercase;letter-spacing:.28em;color:var(--gold-d)}
+
+/* ═══ VISIT ═══ */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.v-left{background:var(--s1);padding:60px 50px}
+.v-left h3{font-family:'Bodoni Moda',serif;font-size:1.5rem;color:var(--gold-t);font-weight:700;margin-bottom:24px}
+.hours{width:100%;border-collapse:collapse}
+.hours tr{border-bottom:1px solid var(--line)}
+.hours td{padding:13px 0;font-size:.9rem}
+.hours td:first-child{text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;font-weight:500}
+.hours td:last-child{text-align:right;color:var(--dim)}
+.hours tr.today td{color:var(--gold-t)}
+.hours .cl{color:#7A2E2E}
+.contacts{margin-top:32px;display:flex;flex-direction:column;gap:16px}
+.contacts li{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;color:var(--dim);list-style:none}
+.contacts svg{flex:none;margin-top:1px;stroke:var(--gold)}
+.contacts a:hover{color:var(--cream)}
+.v-right{overflow:hidden;min-height:480px}
+.v-right iframe{width:100%;height:100%;min-height:480px;border:0;filter:grayscale(.5) contrast(1.1) brightness(.85)}
+
+/* ═══ CTA ═══ */
+.cta{text-align:center;padding:100px 24px;background:var(--bg);border-top:1px solid var(--line)}
+.cta .script{font-size:2.2rem;display:block;margin-bottom:4px}
+.cta h2{font-size:clamp(2rem,5vw,3.6rem);color:#fff;margin-bottom:16px}
+.cta p{color:var(--dim);max-width:460px;margin:0 auto 32px;line-height:1.8;font-size:.97rem}
+
+/* ═══ FOOTER ═══ */
+footer{background:#04030A;padding:60px 0 26px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:44px}
+footer h4{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.32em;color:var(--gold);margin-bottom:18px}
+footer p,footer li,footer a{color:var(--dim);font-size:.87rem;line-height:1.9}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+footer a:hover{color:var(--cream)}
+.foot-name{font-family:'Bodoni Moda',serif;font-size:1.5rem;font-weight:700;color:#fff}
+.foot-bot{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.74rem;color:#3D3A45}
+
+/* ═══ BOOKING MODAL ═══ */
+.bk-overlay{position:fixed;inset:0;z-index:500;display:none;background:rgba(4,3,10,.96);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px}
+.bk-overlay.open{display:flex}
+.bk-modal{background:var(--s1);border:1px solid var(--line);border-radius:2px;width:100%;max-width:820px;max-height:92vh;overflow-y:auto;position:relative}
+.bk-modal::-webkit-scrollbar{width:4px}
+.bk-modal::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+.bk-close{position:absolute;top:20px;right:20px;width:36px;height:36px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);border-radius:1px;cursor:pointer;z-index:10;color:var(--dim);transition:.2s}
+.bk-close:hover{color:var(--cream);border-color:var(--gold-d)}
+.bk-head{padding:40px 44px 28px;border-bottom:1px solid var(--line)}
+.bk-head .eyebrow{margin-bottom:8px;display:block}
+.bk-head h2{font-family:'Bodoni Moda',serif;font-size:2rem;font-weight:700;color:#fff}
+/* Steps */
+.bk-steps{display:flex;gap:0;border-bottom:1px solid var(--line)}
+.bk-step{flex:1;padding:16px 20px;text-align:center;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--dim);border-bottom:2px solid transparent;transition:.25s;cursor:default}
+.bk-step.active{color:var(--gold-t);border-bottom-color:var(--gold)}
+.bk-step.done{color:var(--gold-d)}
+/* Step panels */
+.bk-content{padding:36px 44px}
+.bk-panel{display:none}
+.bk-panel.show{display:block}
+/* Service cards */
+.bk-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.bk-svc{border:1px solid var(--line);padding:18px 20px;cursor:pointer;transition:.25s;border-radius:1px;position:relative}
+.bk-svc:hover{border-color:var(--gold-d);background:rgba(191,154,61,.05)}
+.bk-svc.picked{border-color:var(--gold-t);background:rgba(191,154,61,.08)}
+.bk-svc.picked::after{content:"✓";position:absolute;top:12px;right:14px;color:var(--gold-t);font-size:.85rem}
+.bk-svc h4{font-family:'Bodoni Moda',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:3px}
+.bk-svc .dur{font-size:.73rem;color:var(--dim)}
+.bk-svc .price{font-family:'Bodoni Moda',serif;font-size:1.3rem;font-weight:700;color:var(--gold-t);margin-top:8px;display:block}
+/* Barber cards */
+.bk-barber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.bk-barber{border:1px solid var(--line);padding:24px 16px;cursor:pointer;transition:.25s;text-align:center;border-radius:1px;position:relative}
+.bk-barber:hover{border-color:var(--gold-d);background:rgba(191,154,61,.04)}
+.bk-barber.picked{border-color:var(--gold-t);background:rgba(191,154,61,.07)}
+.bk-barber.picked::after{content:"✓";position:absolute;top:10px;right:12px;color:var(--gold-t)}
+.bk-barber img{width:80px;height:80px;border-radius:50%;margin:0 auto 12px;object-fit:cover;object-position:center top;border:1px solid var(--line)}
+.bk-barber .picked-border img{border-color:var(--gold-t)}
+.bk-barber h4{font-family:'Bodoni Moda',serif;font-size:1.1rem;color:var(--cream);margin-bottom:2px}
+.bk-barber .role{font-size:.68rem;color:var(--gold);text-transform:uppercase;letter-spacing:.2em}
+/* Nav buttons */
+.bk-actions{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--line)}
+.bk-back{font-size:.78rem;color:var(--dim);cursor:pointer;padding:10px 0;transition:.2s;background:none;border:0}
+.bk-back:hover{color:var(--cream)}
+/* Step 3 confirm */
+.bk-confirm{text-align:center;padding:20px 0}
+.bk-confirm .icon{width:64px;height:64px;border-radius:50%;border:1px solid var(--gold-d);display:grid;place-items:center;margin:0 auto 20px}
+.bk-confirm h3{font-family:'Bodoni Moda',serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:10px}
+.bk-confirm p{color:var(--dim);line-height:1.8;margin-bottom:24px}
+.bk-summary{background:var(--s2);border:1px solid var(--line);padding:20px 24px;border-radius:1px;margin-bottom:24px;text-align:left}
+.bk-summary li{display:flex;justify-content:space-between;font-size:.88rem;padding:8px 0;border-bottom:1px solid var(--line);list-style:none}
+.bk-summary li:last-child{border-bottom:0}
+.bk-summary .l{color:var(--dim)}
+.bk-summary .r{color:var(--cream);font-weight:500}
+
+/* ═══ SCROLL REVEAL ═══ */
+.rv{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.rv-l.in{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.rv-r.in{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.08s}[data-d="2"]{transition-delay:.18s}[data-d="3"]{transition-delay:.28s}[data-d="4"]{transition-delay:.38s}[data-d="5"]{transition-delay:.46s}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .hero-body{grid-template-columns:1fr}.hero-right{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-col{min-height:300px}.about-img-col .overlay{display:none}
+  .about-text-col{padding:50px 40px}
+  .svc-layout{grid-template-columns:1fr}
+  .svc-sidebar{border-right:0;border-bottom:1px solid var(--line);display:flex;overflow-x:auto}
+  .svc-tab{border-bottom:0;border-right:1px solid var(--line);white-space:nowrap;flex:none;min-width:140px}
+  .team-grid,.rev-grid{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .g1,.g2,.g3,.g4,.g5,.g6,.g7{grid-column:auto;grid-row:auto}
+  .bk-svc-grid{grid-template-columns:1fr}
+  .bk-barber-grid{grid-template-columns:1fr 1fr}
+  .bk-content{padding:28px}
+}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:0;right:0;bottom:0;width:72%;background:rgba(4,3,10,.98);flex-direction:column;justify-content:center;gap:24px;transform:translateX(100%);transition:.35s ease;padding:50px 32px;border-left:1px solid var(--line)}
+  .nav-links.open{transform:none}
+  .nav-book{display:none}
+  .burger{display:flex}
+  .wrap{padding:0 20px}
+  .nav-i{padding:18px 20px}
+  .sec{padding:80px 0}.sec-sm{padding:60px 0}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .bk-modal{max-height:100vh;border-radius:0}
+}
+@media(max-width:480px){
+  .team-grid{grid-template-columns:1fr}
+  .bk-barber-grid{grid-template-columns:repeat(3,1fr)}
+  .about-stats{grid-template-columns:1fr}
+  .astat{border-right:0;border-bottom:1px solid var(--line)}
+  .astat:last-child{border-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv,.rv-l,.rv-r{opacity:1;transform:none}
+  .hero-tag,.hero-h1,.hero-sub,.hero-cta,.hero-badge,.hero-right{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ BOOKING MODAL ════ -->
+<div class="bk-overlay" id="bk-overlay" role="dialog" aria-modal="true" aria-label="Book an appointment">
+  <div class="bk-modal">
+    <button class="bk-close" id="bk-close" aria-label="Close booking">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+    <div class="bk-head">
+      <span class="eyebrow">Online Booking</span>
+      <h2>Book Your Chair</h2>
+    </div>
+    <div class="bk-steps">
+      <div class="bk-step active" data-step="1">1 · Service</div>
+      <div class="bk-step" data-step="2">2 · Barber</div>
+      <div class="bk-step" data-step="3">3 · Confirm</div>
+    </div>
+    <div class="bk-content">
+
+      <!-- STEP 1: SERVICE -->
+      <div class="bk-panel show" id="bk-panel-1">
+        <p style="color:var(--dim);font-size:.88rem;margin-bottom:22px">Select the service you'd like to book:</p>
+        <div class="bk-svc-grid">
+          <div class="bk-svc" data-svc="Skin Fade Cut" data-dur="30 min" data-price="€16"><h4>Skin Fade Cut</h4><span class="dur">30 min</span><span class="price">€16</span></div>
+          <div class="bk-svc" data-svc="Normal Cut" data-dur="25 min" data-price="€14"><h4>Normal Cut</h4><span class="dur">25 min</span><span class="price">€14</span></div>
+          <div class="bk-svc" data-svc="Normal Cut + Wash" data-dur="30 min" data-price="€17"><h4>Normal Cut + Wash</h4><span class="dur">30 min</span><span class="price">€17</span></div>
+          <div class="bk-svc" data-svc="Long Hair" data-dur="35 min" data-price="€20"><h4>Long Hair</h4><span class="dur">35 min</span><span class="price">€20</span></div>
+          <div class="bk-svc" data-svc="Kids Cut (under 10)" data-dur="25 min" data-price="€12"><h4>Kids Cut</h4><span class="dur">25 min · Under 10</span><span class="price">€12</span></div>
+          <div class="bk-svc" data-svc="Senior Cut (65+)" data-dur="20 min" data-price="€12"><h4>Senior Cut</h4><span class="dur">20 min · 65+</span><span class="price">€12</span></div>
+          <div class="bk-svc" data-svc="Skin Fade + Beard Trim" data-dur="45 min" data-price="€20"><h4>Skin Fade + Beard Trim</h4><span class="dur">45 min</span><span class="price">€20</span></div>
+          <div class="bk-svc" data-svc="Full Grooming Package" data-dur="50 min" data-price="€22–25"><h4>Full Grooming Package ★</h4><span class="dur">50 min · Signature</span><span class="price">€22–25</span></div>
+          <div class="bk-svc" data-svc="Short Beard Trim" data-dur="15 min" data-price="€5"><h4>Short Beard Trim</h4><span class="dur">15 min</span><span class="price">€5</span></div>
+          <div class="bk-svc" data-svc="Long Beard" data-dur="20 min" data-price="€10"><h4>Long Beard</h4><span class="dur">20 min</span><span class="price">€10</span></div>
+        </div>
+        <div class="bk-actions">
+          <span></span>
+          <button class="btn btn-gold" id="bk-next-1" disabled>Next: Choose Barber →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: BARBER -->
+      <div class="bk-panel" id="bk-panel-2">
+        <p style="color:var(--dim);font-size:.88rem;margin-bottom:22px">Choose your barber — or we'll assign the next available:</p>
+        <div class="bk-barber-grid">
+          <div class="bk-barber" data-barber="Drew">
+            <img src="https://avatar.anywhere.app/files/img/fja8oon5xnTh/aw-image-397.jpeg" alt="Drew" loading="lazy"/>
+            <h4>Drew</h4><div class="role">Owner · Master</div>
+          </div>
+          <div class="bk-barber" data-barber="Tony D">
+            <img src="https://avatar.anywhere.app/files/img/fi3ZaUySeErE/profilepic.png" alt="Tony D" loading="lazy"/>
+            <h4>Tony D</h4><div class="role">The Teacher</div>
+          </div>
+          <div class="bk-barber" data-barber="Antonis">
+            <img src="https://avatar.anywhere.app/files/img/fmoekLsyUJo9/aw-image-986.jpeg" alt="Antonis" loading="lazy"/>
+            <h4>Antonis</h4><div class="role">Barber</div>
+          </div>
+        </div>
+        <div class="bk-actions">
+          <button class="bk-back" id="bk-back-2">← Back</button>
+          <button class="btn btn-gold" id="bk-next-2" disabled>Next: Confirm →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CONFIRM -->
+      <div class="bk-panel" id="bk-panel-3">
+        <div class="bk-confirm">
+          <div class="icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#BF9A3D" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/></svg>
+          </div>
+          <h3>Your Selection</h3>
+          <p>Review your details below, then head to our booking system to pick your preferred date &amp; time.</p>
+          <ul class="bk-summary" id="bk-summary"></ul>
+          <a class="btn btn-gold" id="bk-go" href="https://bamsbarbers.setmore.com/book" target="_blank" rel="noopener" style="width:100%;justify-content:center;font-size:.85rem">
+            Choose Date &amp; Time at BAM'S →
+          </a>
+          <p style="margin-top:16px;font-size:.78rem;color:var(--dim)">You'll be taken to our secure booking page to complete your appointment.</p>
+        </div>
+        <div class="bk-actions" style="margin-top:12px">
+          <button class="bk-back" id="bk-back-3">← Back</button>
+          <span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════ NAV ════ -->
+<header class="nav" id="nav">
+  <div class="nav-i">
+    <a href="#top" class="logo">
+      <span class="logo-mark">B</span>
+      <span class="logo-name">BAM'S BARBERS<small>Larnaka · Est. 2015</small></span>
+    </a>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <button class="btn btn-gold btn-sm nav-book bk-open">Book Now</button>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="top">
+  <div class="hero-tex"></div>
+  <div class="hero-rule"></div>
+  <!-- Falling hair strands -->
+  <div class="hairs" aria-hidden="true" id="hairs"></div>
+
+  <div class="wrap">
+    <div class="hero-body">
+      <div>
+        <div class="hero-tag">
+          <span class="eyebrow">Traditional Barbershop · Modern Craft</span>
+        </div>
+        <h1 class="hero-h1">
+          <span class="line1">BAM'S</span>
+          <span class="line2">BARBERS</span>
+        </h1>
+        <p class="hero-sub">
+          <strong>25 years of West End London expertise</strong> — brought to the heart of Larnaka.<br/>
+          Every fade, every cut, executed to perfection.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-gold bk-open">Book Your Chair →</button>
+          <a class="btn btn-outline" href="#gallery">See Our Work</a>
+        </div>
+        <div class="hero-badge">
+          <div>
+            <span class="badge-num">4.9</span>
+          </div>
+          <div>
+            <span class="badge-stars">★★★★★</span>
+            <span class="badge-txt">647 verified reviews</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- Barber pole -->
+        <div class="pole-container" aria-hidden="true">
+          <div class="pole-globe"></div>
+          <div class="pole-top"></div>
+          <div class="pole-wrap"><div class="pole-stripes"></div></div>
+          <div class="pole-bot"></div>
+          <div class="pole-globe" style="margin-top:4px;margin-bottom:0"></div>
+        </div>
+        <!-- Est. badge -->
+        <div class="est-ring">
+          <div class="est-circle">
+            <div class="est-orbit">
+              <svg viewBox="0 0 190 190" fill="none">
+                <path id="op" d="M95,95 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" fill="none"/>
+                <text fill="#7A6022" font-family="Jost,sans-serif" font-size="9.5" font-weight="500" letter-spacing="5.5">
+                  <textPath href="#op">LARNAKA · WEST END LONDON · EST 2015 · </textPath>
+                </text>
+              </svg>
+            </div>
+            <div class="est-inner"><b>2015</b><span>Established</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="g">★ 4.9 Stars</span><span>West End London</span><span>Skin Fades</span><span>Classic Cuts</span><span>Beard Grooming</span><span class="g">Est. 2015</span><span>All Ages Welcome</span><span>Online Booking</span><span>647 Reviews</span><span>Larnaka, Cyprus</span>
+    <span class="g">★ 4.9 Stars</span><span>West End London</span><span>Skin Fades</span><span>Classic Cuts</span><span>Beard Grooming</span><span class="g">Est. 2015</span><span>All Ages Welcome</span><span>Online Booking</span><span>647 Reviews</span><span>Larnaka, Cyprus</span>
+  </div>
+</div>
+
+<!-- ════ GALLERY ════ -->
+<section class="sec gallery-bg" id="gallery">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="script">The Shop</span>
+      <h2>Inside BAM'S</h2>
+      <p>A stylishly decorated space where craft takes centre stage.</p>
+      <div class="sh-rule"></div>
+    </div>
+  </div>
+  <div class="gal-grid" style="max-width:var(--max);margin:0 auto;padding:0 40px">
+    <div class="gal-item g1 rv"><img src="https://images.setmore.com/files/img/fTitWrmhVhXZ/ed39f02d-04c1-4419-9739-d9ee834b903e.jpeg" alt="BAM'S BARBERS shop interior" loading="lazy"/></div>
+    <div class="gal-item g2 rv" data-d="1"><img src="https://images.setmore.com/files/img/fFMJW4krDf5i/6baec838-63d5-4c77-af5a-e1e54677ba12.jpeg" alt="Barber at work" loading="lazy"/></div>
+    <div class="gal-item g3 rv" data-d="2"><img src="https://images.setmore.com/files/img/fMSUUyMfvOgr/aed460fa-bd11-4869-af95-4485945492c0.jpeg" alt="BAM'S shop detail" loading="lazy"/></div>
+    <div class="gal-item g4 rv" data-d="2"><img src="https://images.setmore.com/files/img/fmuWP5JrNtpL/7cab38d8-d3da-4265-a9bf-044fa719cb5f.jpeg" alt="Haircut detail" loading="lazy"/></div>
+    <div class="gal-item g5 rv" data-d="3"><img src="https://images.setmore.com/files/img/fML7eYxjkxxK/478c6470-c731-42b4-973f-9137d98c89db.jpeg" alt="BAM'S interior" loading="lazy"/></div>
+    <div class="gal-item g6 rv" data-d="1"><img src="https://images.setmore.com/files/img/fwVjZlbyZTdu/2933544e-5c83-458b-99cb-f53474a46efc.jpeg" alt="Barber work detail" loading="lazy"/></div>
+    <div class="gal-item g7 rv" data-d="2"><img src="https://images.setmore.com/files/img/fz1bIn4Uudl5/66747ef5-df75-45b4-88b1-06402c137292.jpeg" alt="BAM'S interior detail" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- ════ BIG SCISSORS DIVIDER ════ -->
+<div class="big-snip" id="snip-1" aria-hidden="true">
+  <div class="snip-cut-reveal"></div>
+  <div class="snip-gold-line"></div>
+  <div class="big-snip-svg">
+    <svg viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Pivot -->
+      <circle cx="160" cy="40" r="6" fill="#BF9A3D"/>
+      <circle cx="160" cy="40" r="3" fill="#D4AC52"/>
+      <!-- Top blade (animated) -->
+      <g class="sc-top">
+        <path d="M160 37 L18 8 Q8 5 8 12 Q8 19 18 17 L160 37Z" fill="#BF9A3D"/>
+        <path d="M160 37 L18 8 Q8 5 8 12 Q8 19 18 17 L160 37Z" fill="none" stroke="#D4AC52" stroke-width=".8" opacity=".5"/>
+        <!-- Handle ring top -->
+        <circle cx="11" cy="13" r="12" fill="none" stroke="#BF9A3D" stroke-width="2.5"/>
+        <circle cx="11" cy="13" r="6" fill="none" stroke="#BF9A3D" stroke-width="2"/>
+        <circle cx="11" cy="13" r="2.5" fill="#BF9A3D" opacity=".7"/>
+      </g>
+      <!-- Bottom blade -->
+      <g>
+        <path d="M160 43 L18 72 Q8 75 8 68 Q8 61 18 63 L160 43Z" fill="#BF9A3D"/>
+        <path d="M160 43 L18 72 Q8 75 8 68 Q8 61 18 63 L160 43Z" fill="none" stroke="#D4AC52" stroke-width=".8" opacity=".5"/>
+        <!-- Handle ring bottom -->
+        <circle cx="11" cy="67" r="12" fill="none" stroke="#BF9A3D" stroke-width="2.5"/>
+        <circle cx="11" cy="67" r="6" fill="none" stroke="#BF9A3D" stroke-width="2"/>
+        <circle cx="11" cy="67" r="2.5" fill="#BF9A3D" opacity=".7"/>
+      </g>
+      <!-- Right handle -->
+      <path d="M160 40 L305 28 Q312 27 312 33 Q312 40 305 40 L160 40Z" fill="#8a6b2e" opacity=".9"/>
+      <path d="M160 40 L305 52 Q312 53 312 47 Q312 40 305 40 L160 40Z" fill="#8a6b2e" opacity=".9"/>
+    </svg>
+  </div>
+  <div class="snip-label">BAM'S BARBERS · EST. 2015</div>
+</div>
+
+<!-- ════ SERVICES ════ -->
+<section class="sec" id="services" style="background:var(--s1)">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="script">The Menu</span>
+      <h2>Services &amp; Prices</h2>
+      <p>Transparent pricing, expert technique.</p>
+      <div class="sh-rule"></div>
+    </div>
+    <div class="svc-layout rv">
+      <div class="svc-sidebar">
+        <div class="svc-tab active" data-panel="cuts">
+          <div><h3>Cuts</h3><span>6 services</span></div>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="svc-tab" data-panel="beard">
+          <div><h3>Beard</h3><span>3 services</span></div>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="svc-tab" data-panel="packages">
+          <div><h3>Packages</h3><span>4 services</span></div>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner show" id="panel-cuts">
+          <h3>Cuts</h3><p class="sub">Precision for every style &amp; age</p>
+          <ul style="list-style:none">
+            <li class="svc-row feat"><span class="nm">Skin Fade Cut</span><span class="dur">30 min</span><span class="pr">€16</span></li>
+            <li class="svc-row"><span class="nm">Normal Cut</span><span class="dur">25 min</span><span class="pr">€14</span></li>
+            <li class="svc-row"><span class="nm">Normal Cut + Wash</span><span class="dur">30 min</span><span class="pr">€17</span></li>
+            <li class="svc-row"><span class="nm">Long Hair</span><span class="dur">35 min</span><span class="pr">€20</span></li>
+            <li class="svc-row"><span class="nm">Kids — Under 10</span><span class="dur">25 min</span><span class="pr">€12</span></li>
+            <li class="svc-row"><span class="nm">Senior — 65+</span><span class="dur">20 min</span><span class="pr">€12</span></li>
+          </ul>
+          <div class="svc-book-cta"><button class="btn btn-gold bk-open">Book a Cut →</button></div>
+        </div>
+        <div class="svc-panel-inner" id="panel-beard">
+          <h3>Beard &amp; Grooming</h3><p class="sub">Sharp lines, clean finish</p>
+          <ul style="list-style:none">
+            <li class="svc-row"><span class="nm">Short Beard Trim</span><span class="dur">15 min</span><span class="pr">€5</span></li>
+            <li class="svc-row"><span class="nm">Long Beard</span><span class="dur">20 min</span><span class="pr">€10</span></li>
+            <li class="svc-row"><span class="nm">Wax — Ears or Nose</span><span class="dur">5 min</span><span class="pr">€3</span></li>
+          </ul>
+          <div class="svc-book-cta"><button class="btn btn-gold bk-open">Book Beard →</button></div>
+        </div>
+        <div class="svc-panel-inner" id="panel-packages">
+          <h3>Packages</h3><p class="sub">Best value — the full BAM'S treatment</p>
+          <ul style="list-style:none">
+            <li class="svc-row feat"><span class="nm">Skin Fade + Beard Trim</span><span class="dur">45 min</span><span class="pr">€20</span></li>
+            <li class="svc-row"><span class="nm">Normal Cut + Beard Trim</span><span class="dur">40 min</span><span class="pr">€18</span></li>
+            <li class="svc-row"><span class="nm">Skin Fade + Wash</span><span class="dur">35 min</span><span class="pr">€18</span></li>
+            <li class="svc-row feat"><span class="nm">Full Grooming Package ★</span><span class="dur">50 min</span><span class="pr">€22–25</span></li>
+          </ul>
+          <div class="svc-book-cta"><button class="btn btn-gold bk-open">Book a Package →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CLIPPER DIVIDER ════ -->
+<div class="clipper-bar" id="clip-1" aria-hidden="true">
+  <div class="clipper-line"></div>
+  <div class="clipper-svg-wrap">
+    <svg width="200" height="60" viewBox="0 0 200 60" fill="none">
+      <!-- Clipper body -->
+      <g class="clipper-buzz">
+        <rect x="60" y="12" width="120" height="36" rx="8" fill="#BF9A3D" opacity=".85"/>
+        <rect x="62" y="14" width="116" height="10" rx="3" fill="#D4AC52" opacity=".4"/>
+        <!-- Power button -->
+        <circle cx="155" cy="30" r="7" fill="#1a1400" stroke="#D4AC52" stroke-width="1.5"/>
+        <path d="M155 24v6M152 26l3-2 3 2" stroke="#D4AC52" stroke-width="1.2"/>
+        <!-- Cord -->
+        <path d="M180 30 Q195 30 198 30" stroke="#8a6b2e" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <!-- Blade assembly -->
+      <g>
+        <rect x="8" y="22" width="55" height="16" rx="3" fill="#8a6b2e"/>
+        <rect x="6" y="20" width="58" height="6" rx="2" fill="#BF9A3D"/>
+        <!-- Blade teeth -->
+        <path d="M8 20 v-4 M14 20 v-6 M20 20 v-4 M26 20 v-6 M32 20 v-4 M38 20 v-6 M44 20 v-4 M50 20 v-6 M56 20 v-4 M62 20 v-4" stroke="#D4AC52" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ════ TEAM ════ -->
+<section class="sec-sm" id="team" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="script">The Craftsmen</span>
+      <h2>Meet the Barbers</h2>
+      <p>Three skilled hands. One standard. Book your favourite.</p>
+      <div class="sh-rule"></div>
+    </div>
+    <div class="team-grid">
+      <article class="barber rv" data-d="1">
+        <div class="b-photo">
+          <img src="https://avatar.anywhere.app/files/img/fja8oon5xnTh/aw-image-397.jpeg" alt="Drew — Master Barber" loading="lazy"/>
+        </div>
+        <div class="b-name">Drew</div>
+        <div class="b-role">Master Barber · Owner</div>
+        <p class="b-bio">West End-trained, fade specialist, and the reason 647 clients keep coming back.</p>
+        <button class="b-btn bk-open">Book with Drew →</button>
+      </article>
+      <article class="barber rv" data-d="2">
+        <div class="b-photo">
+          <img src="https://avatar.anywhere.app/files/img/fi3ZaUySeErE/profilepic.png" alt="Tony D — Senior Barber" loading="lazy"/>
+        </div>
+        <div class="b-name">Tony D</div>
+        <div class="b-role">The Teacher · Senior Barber</div>
+        <p class="b-bio">Decades of mastery and the steady hand that raised the next generation.</p>
+        <button class="b-btn bk-open">Book with Tony D →</button>
+      </article>
+      <article class="barber rv" data-d="3">
+        <div class="b-photo">
+          <img src="https://avatar.anywhere.app/files/img/fmoekLsyUJo9/aw-image-986.jpeg" alt="Antonis — Barber" loading="lazy"/>
+        </div>
+        <div class="b-name">Antonis</div>
+        <div class="b-role">Barber</div>
+        <p class="b-bio">Sharp fades, clean lines, great energy. Precision and personality every time.</p>
+        <button class="b-btn bk-open">Book with Antonis →</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BIG SCISSORS DIVIDER 2 ════ -->
+<div class="big-snip" id="snip-2" aria-hidden="true">
+  <div class="snip-cut-reveal"></div>
+  <div class="snip-gold-line"></div>
+  <div class="big-snip-svg">
+    <svg viewBox="0 0 320 80" fill="none">
+      <circle cx="160" cy="40" r="6" fill="#BF9A3D"/><circle cx="160" cy="40" r="3" fill="#D4AC52"/>
+      <g class="sc-top">
+        <path d="M160 37 L18 8 Q8 5 8 12 Q8 19 18 17 L160 37Z" fill="#BF9A3D"/>
+        <circle cx="11" cy="13" r="12" fill="none" stroke="#BF9A3D" stroke-width="2.5"/>
+        <circle cx="11" cy="13" r="6" fill="none" stroke="#BF9A3D" stroke-width="2"/>
+        <circle cx="11" cy="13" r="2.5" fill="#BF9A3D" opacity=".7"/>
+      </g>
+      <g>
+        <path d="M160 43 L18 72 Q8 75 8 68 Q8 61 18 63 L160 43Z" fill="#BF9A3D"/>
+        <circle cx="11" cy="67" r="12" fill="none" stroke="#BF9A3D" stroke-width="2.5"/>
+        <circle cx="11" cy="67" r="6" fill="none" stroke="#BF9A3D" stroke-width="2"/>
+        <circle cx="11" cy="67" r="2.5" fill="#BF9A3D" opacity=".7"/>
+      </g>
+      <path d="M160 40 L305 28 Q312 27 312 33 Q312 40 305 40 L160 40Z" fill="#8a6b2e" opacity=".9"/>
+      <path d="M160 40 L305 52 Q312 53 312 47 Q312 40 305 40 L160 40Z" fill="#8a6b2e" opacity=".9"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ════ ABOUT ════ -->
+<section id="about" style="background:var(--s1)">
+  <div class="about-grid">
+    <div class="about-img-col rv-l">
+      <img src="https://images.setmore.com/files/img/fTitWrmhVhXZ/ed39f02d-04c1-4419-9739-d9ee834b903e.jpeg" alt="Inside BAM'S BARBERS" loading="lazy"/>
+      <div class="overlay"></div>
+    </div>
+    <div class="about-text-col rv-r">
+      <span class="eyebrow">Our Story</span>
+      <h2>Where London<br/><em>Meets Larnaka</em></h2>
+      <p>BAM'S BARBERS has been a cornerstone of Larnaka's grooming scene since 2015. Behind every cut is <strong>over 25 years of hands-on experience from West End London</strong> — one of the world's most demanding barbering environments.</p>
+      <p>Our spacious, beautifully decorated shop welcomes every client regardless of age or hair type. No rush. No shortcuts. You walk out looking and feeling your absolute best.</p>
+      <p>Book a specific barber or let us match you. The standard doesn't change.</p>
+      <div class="about-stats">
+        <div class="astat"><b class="counter" data-target="10">0</b><span>Years in Larnaka</span></div>
+        <div class="astat"><b class="counter" data-target="25">0</b><span>Years Experience</span></div>
+        <div class="astat"><b class="counter" data-target="647">0</b><span>Happy Reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMB DIVIDER ════ -->
+<div class="comb-bar" id="comb-1" aria-hidden="true">
+  <div class="comb-line"></div>
+  <div class="comb-wrap">
+    <svg width="180" height="44" viewBox="0 0 180 44" fill="none">
+      <!-- Comb spine -->
+      <rect x="10" y="18" width="160" height="8" rx="4" fill="#BF9A3D" opacity=".9"/>
+      <!-- Comb teeth -->
+      <line x1="18"  y1="26" x2="18"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="28"  y1="26" x2="28"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="38"  y1="26" x2="38"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="48"  y1="26" x2="48"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="58"  y1="26" x2="58"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="68"  y1="26" x2="68"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="78"  y1="26" x2="78"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="88"  y1="26" x2="88"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="98"  y1="26" x2="98"  y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="108" y1="26" x2="108" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="118" y1="26" x2="118" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="128" y1="26" x2="128" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="138" y1="26" x2="138" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="148" y1="26" x2="148" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="158" y1="26" x2="158" y2="42" stroke="#BF9A3D" stroke-width="3" stroke-linecap="round"/>
+      <!-- Fine teeth above -->
+      <line x1="23"  y1="18" x2="23"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="33"  y1="18" x2="33"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="43"  y1="18" x2="43"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="53"  y1="18" x2="53"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="63"  y1="18" x2="63"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="73"  y1="18" x2="73"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="83"  y1="18" x2="83"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="93"  y1="18" x2="93"  y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="103" y1="18" x2="103" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="113" y1="18" x2="113" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="123" y1="18" x2="123" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="133" y1="18" x2="133" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="143" y1="18" x2="143" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="153" y1="18" x2="153" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+      <line x1="163" y1="18" x2="163" y2="6" stroke="#D4AC52" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ════ REVIEWS ════ -->
+<section class="sec rev-bg" id="reviews">
+  <div class="wrap">
+    <div class="rev-hero rv">
+      <span class="rev-big">4.9</span>
+      <div>
+        <span class="rev-stars">★★★★★</span>
+        <p class="rev-count">Based on <strong>647 reviews</strong><br/>Larnaka's most-loved barbershop</p>
+      </div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card rv" data-d="1">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Best fade I've had in Cyprus, period. You can feel the London experience the moment you sit in the chair."</p>
+        <div class="r-name">Verified Client</div>
+      </div>
+      <div class="rev-card rv" data-d="2">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Great with my son and great with me. Clean shop, welcoming atmosphere, sharp result every single visit."</p>
+        <div class="r-name">Verified Client</div>
+      </div>
+      <div class="rev-card rv" data-d="3">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"The full grooming package is worth every cent. Booked in 30 seconds online. Will not go anywhere else."</p>
+        <div class="r-name">Verified Client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ VISIT ════ -->
+<section class="sec" id="visit" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="script">Find Us</span>
+      <h2>Visit the Shop</h2>
+      <p>In the heart of Larnaka. Walk in or book ahead.</p>
+      <div class="sh-rule"></div>
+    </div>
+  </div>
+  <div style="max-width:var(--max);margin:0 auto;padding:0 40px">
+    <div class="visit-grid">
+      <div class="v-left rv-l">
+        <h3>Opening Hours</h3>
+        <table class="hours" id="hours-t">
+          <tbody>
+            <tr data-day="1"><td>Monday</td><td>9:00 – 18:00</td></tr>
+            <tr data-day="2"><td>Tuesday</td><td>9:00 – 18:00</td></tr>
+            <tr data-day="3"><td>Wednesday</td><td>9:00 – 18:00</td></tr>
+            <tr data-day="4"><td>Thursday</td><td class="cl">Closed</td></tr>
+            <tr data-day="5"><td>Friday</td><td>9:00 – 19:00</td></tr>
+            <tr data-day="6"><td>Saturday</td><td>9:00 – 17:00</td></tr>
+            <tr data-day="0"><td>Sunday</td><td class="cl">Closed</td></tr>
+          </tbody>
+        </table>
+        <ul class="contacts">
+          <li>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" stroke="currentColor"/><circle cx="12" cy="10" r="3" stroke="currentColor"/></svg>
+            <span>46 Dimitriou and Karaoli, Larnaka 6021, Cyprus</span>
+          </li>
+          <li>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke="currentColor"/></svg>
+            <a href="tel:+35799750221">+357 99 750221</a>
+          </li>
+          <li>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor"/><path d="m22 7-10 6L2 7" stroke="currentColor"/></svg>
+            <a href="mailto:andrewkoutsoftas1@gmail.com">andrewkoutsoftas1@gmail.com</a>
+          </li>
+        </ul>
+        <button class="btn btn-gold bk-open" style="margin-top:28px">Book Online →</button>
+      </div>
+      <div class="v-right rv-r">
+        <iframe title="BAM'S BARBERS map" src="https://maps.google.com/maps?q=46%20Dimitriou%20and%20Karaoli%2C%20Larnaka%206021%2C%20Cyprus&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta">
+  <div class="rv">
+    <span class="script">Ready for a fresh cut?</span>
+    <h2>Book Your Chair Today</h2>
+    <p>Under a minute to book. Pick your barber, pick your slot. We handle the rest.</p>
+    <button class="btn btn-gold bk-open" style="font-size:.9rem;padding:17px 40px">Book Now at BAM'S →</button>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-name">BAM'S BARBERS</div>
+        <p style="margin-top:12px;max-width:290px">Larnaka's established barbershop since 2015. Classic craft, modern cuts, 25 years of West End London experience.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#services">Services &amp; Prices</a></li>
+          <li><a href="#team">Our Barbers</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#visit">Visit &amp; Hours</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+35799750221">+357 99 750221</a></li>
+          <li><a href="mailto:andrewkoutsoftas1@gmail.com">Email us</a></li>
+          <li>46 Dimitriou &amp; Karaoli, Larnaka</li>
+          <li><button class="bk-open" style="background:none;border:0;color:var(--gold);font-size:.87rem;cursor:pointer;padding:0;font-family:inherit;transition:.2s" onmouseover="this.style.color='#EDE4D6'" onmouseout="this.style.color='var(--gold)'">Book Online →</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr"></span> BAM'S BARBERS · Larnaka, Cyprus</span>
+      <span>Mon–Wed &amp; Fri–Sat · Closed Thu &amp; Sun</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── NAV ─── */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 50), {passive:true});
+
+/* ─── BURGER ─── */
+const burger = document.getElementById('burger');
+const menu = document.getElementById('nav-menu');
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.classList.toggle('x', open);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('open');
+  burger.classList.remove('x');
+}));
+
+/* ─── TODAY HOURS ─── */
+const tr = document.querySelector('#hours-t tr[data-day="' + new Date().getDay() + '"]');
+if (tr) tr.classList.add('today');
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ─── FALLING HAIR ─── */
+const hairContainer = document.getElementById('hairs');
+for (let i = 0; i < 18; i++) {
+  const h = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  const left = Math.random() * 100;
+  const dur = 6 + Math.random() * 10;
+  const delay = Math.random() * 8;
+  const rot = (Math.random() - .5) * 60;
+  const len = 20 + Math.random() * 40;
+  h.setAttribute('width', '2');
+  h.setAttribute('height', String(len));
+  h.setAttribute('viewBox', '0 0 2 ' + len);
+  h.style.cssText = `position:absolute;left:${left}%;top:-${len}px;--r:${rot}deg;animation:hairFall ${dur}s ${delay}s linear infinite;will-change:transform`;
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d', `M1 0 Q${.5+Math.random()} ${len*.4} 1 ${len}`);
+  path.setAttribute('stroke', '#D4AC52');
+  path.setAttribute('stroke-width', '.8');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('opacity', '.35');
+  h.appendChild(path);
+  hairContainer.appendChild(h);
+}
+
+/* ─── SCROLL REVEAL ─── */
+const revIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } });
+}, {threshold: 0.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => revIO.observe(el));
+
+/* ─── ANIMATED TOOL DIVIDERS (scissors/clipper/comb) ─── */
+const toolIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    el.classList.remove('cut','buzz','slide');
+    void el.offsetWidth;
+    if (el.classList.contains('big-snip')) el.classList.add('cut');
+    if (el.classList.contains('clipper-bar')) el.classList.add('buzz');
+    if (el.classList.contains('comb-bar')) el.classList.add('slide');
+  });
+}, {threshold: 0.55, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.big-snip,.clipper-bar,.comb-bar').forEach(el => toolIO.observe(el));
+
+/* ─── COUNTER ANIMATION ─── */
+function animCount(el) {
+  const target = parseInt(el.getAttribute('data-target'));
+  const plus = target >= 10;
+  let current = 0;
+  const step = Math.ceil(target / 50);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current + (plus ? '+' : '');
+    if (current >= target) { el.textContent = target + '+'; clearInterval(timer); }
+  }, 28);
+}
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animCount(e.target); counterIO.unobserve(e.target); }
+  });
+}, {threshold: 0.5});
+document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
+
+/* ─── SERVICE TABS ─── */
+document.querySelectorAll('.svc-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.svc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.svc-panel-inner').forEach(p => p.classList.remove('show'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('show');
+  });
+});
+
+/* ─── BOOKING MODAL ─── */
+const overlay = document.getElementById('bk-overlay');
+let selSvc = null, selBarber = null;
+
+function openBooking() {
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  goStep(1);
+}
+function closeBooking() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Open triggers
+document.querySelectorAll('.bk-open').forEach(btn => btn.addEventListener('click', openBooking));
+document.getElementById('bk-close').addEventListener('click', closeBooking);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeBooking(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
+
+function goStep(n) {
+  document.querySelectorAll('.bk-step').forEach(s => {
+    const sn = parseInt(s.dataset.step);
+    s.classList.toggle('active', sn === n);
+    s.classList.toggle('done', sn < n);
+  });
+  document.querySelectorAll('.bk-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('bk-panel-' + n).classList.add('show');
+}
+
+// Step 1: service
+document.querySelectorAll('.bk-svc').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.bk-svc').forEach(c => c.classList.remove('picked'));
+    card.classList.add('picked');
+    selSvc = {name: card.dataset.svc, dur: card.dataset.dur, price: card.dataset.price};
+    document.getElementById('bk-next-1').disabled = false;
+  });
+});
+document.getElementById('bk-next-1').addEventListener('click', () => goStep(2));
+
+// Step 2: barber
+document.querySelectorAll('.bk-barber').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.bk-barber').forEach(c => c.classList.remove('picked'));
+    card.classList.add('picked');
+    selBarber = card.dataset.barber;
+    document.getElementById('bk-next-2').disabled = false;
+  });
+});
+document.getElementById('bk-next-2').addEventListener('click', () => {
+  const summary = document.getElementById('bk-summary');
+  summary.innerHTML = `
+    <li><span class="l">Service</span><span class="r">${selSvc.name}</span></li>
+    <li><span class="l">Duration</span><span class="r">${selSvc.dur}</span></li>
+    <li><span class="l">Price</span><span class="r">${selSvc.price}</span></li>
+    <li><span class="l">Barber</span><span class="r">${selBarber}</span></li>
+  `;
+  goStep(3);
+});
+
+document.getElementById('bk-back-2').addEventListener('click', () => goStep(1));
+document.getElementById('bk-back-3').addEventListener('click', () => goStep(2));
+</script>
+</body>
+</html>

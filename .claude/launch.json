@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bams-barbers",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5050", "--directory", "/Users/roy/Desktop/Claude Code Projects/bams-barbers"],
+      "port": 5050
+    },
+    {
+      "name": "typeforge",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5051", "--directory", "/Users/roy/Desktop/Claude Code Projects/1st try with claude"],
+      "port": 5051
+    }
+  ]
+}
