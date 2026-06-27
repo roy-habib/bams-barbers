@@ -360,6 +360,11 @@ footer a:hover{color:var(--cream)}
 .bk-summary .l{color:var(--dim)}
 .bk-summary .r{color:var(--cream);font-weight:500}
 
+/* ═══ BOOKING IFRAME ═══ */
+.bk-iframe-wrap{height:64vh;min-height:420px;overflow:hidden;border-radius:1px;background:var(--s2)}
+.bk-iframe-wrap iframe{width:100%;height:100%;border:0;display:block}
+.bk-modal.step-3{max-width:980px}
+
 /* ═══ SCROLL REVEAL ═══ */
 .rv{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -446,6 +451,8 @@ footer a:hover{color:var(--cream)}
   .bk-overlay{padding:0;align-items:flex-end}
   .bk-modal{max-height:92vh;border-radius:16px 16px 0 0;transform:translateY(100%);opacity:1;transition:transform 380ms var(--ease-drawer)}
   .bk-overlay.open .bk-modal{transform:translateY(0)}
+  .bk-modal.step-3{max-height:96vh}
+  .bk-iframe-wrap{height:72vh;min-height:300px}
   .bk-head{padding:24px 20px 16px}
   .bk-head h2{font-size:1.4rem}
   .bk-content{padding:16px 20px 24px}
@@ -498,7 +505,7 @@ footer a:hover{color:var(--cream)}
     <div class="bk-steps">
       <div class="bk-step active" data-step="1">1 · Service</div>
       <div class="bk-step" data-step="2">2 · Barber</div>
-      <div class="bk-step" data-step="3">3 · Confirm</div>
+      <div class="bk-step" data-step="3">3 · Book</div>
     </div>
     <div class="bk-content">
 
@@ -546,23 +553,14 @@ footer a:hover{color:var(--cream)}
         </div>
       </div>
 
-      <!-- STEP 3: CONFIRM -->
+      <!-- STEP 3: BOOK (embedded) -->
       <div class="bk-panel" id="bk-panel-3">
-        <div class="bk-confirm">
-          <div class="icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#BF9A3D" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/></svg>
-          </div>
-          <h3>Your Selection</h3>
-          <p>Review your details below, then head to our booking system to pick your preferred date &amp; time.</p>
-          <ul class="bk-summary" id="bk-summary"></ul>
-          <a class="btn btn-gold" id="bk-go" href="https://bamsbarbers.setmore.com/book" target="_blank" rel="noopener" style="width:100%;justify-content:center;font-size:.85rem">
-            Choose Date &amp; Time at BAM'S →
-          </a>
-          <p style="margin-top:16px;font-size:.78rem;color:var(--dim)">You'll be taken to our secure booking page to complete your appointment.</p>
+        <div class="bk-iframe-wrap">
+          <iframe id="bk-iframe" src="about:blank" title="Book at BAM'S BARBERS" allow="payment" loading="lazy"></iframe>
         </div>
-        <div class="bk-actions" style="margin-top:12px">
+        <div class="bk-actions" style="padding-top:14px">
           <button class="bk-back" id="bk-back-3">← Back</button>
-          <span></span>
+          <span style="font-size:.72rem;color:var(--dim)">BAM'S BARBERS · Secure booking</span>
         </div>
       </div>
 
@@ -1173,6 +1171,10 @@ function openBooking() {
 function closeBooking(fromPopstate) {
   overlay.classList.remove('open');
   document.body.style.overflow = '';
+  document.querySelector('.bk-modal').classList.remove('step-3');
+  const iframe = document.getElementById('bk-iframe');
+  iframe.src = 'about:blank';
+  delete iframe.dataset.loaded;
   if (!fromPopstate && history.state && history.state.booking) history.back();
 }
 
@@ -1200,6 +1202,14 @@ function goStep(n) {
   });
   document.querySelectorAll('.bk-panel').forEach(p => p.classList.remove('show'));
   document.getElementById('bk-panel-' + n).classList.add('show');
+  document.querySelector('.bk-modal').classList.toggle('step-3', n === 3);
+  if (n === 3) {
+    const iframe = document.getElementById('bk-iframe');
+    if (!iframe.dataset.loaded) {
+      iframe.src = 'https://bamsbarbers.setmore.com/book';
+      iframe.dataset.loaded = '1';
+    }
+  }
 }
 
 // Step 1: service
@@ -1222,16 +1232,7 @@ document.querySelectorAll('.bk-barber').forEach(card => {
     document.getElementById('bk-next-2').disabled = false;
   });
 });
-document.getElementById('bk-next-2').addEventListener('click', () => {
-  const summary = document.getElementById('bk-summary');
-  summary.innerHTML = `
-    <li><span class="l">Service</span><span class="r">${selSvc.name}</span></li>
-    <li><span class="l">Duration</span><span class="r">${selSvc.dur}</span></li>
-    <li><span class="l">Price</span><span class="r">${selSvc.price}</span></li>
-    <li><span class="l">Barber</span><span class="r">${selBarber}</span></li>
-  `;
-  goStep(3);
-});
+document.getElementById('bk-next-2').addEventListener('click', () => goStep(3));
 
 document.getElementById('bk-back-2').addEventListener('click', () => goStep(1));
 document.getElementById('bk-back-3').addEventListener('click', () => goStep(2));
