@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>BAM'S BARBERS — Larnaca · The Chair Awaits</title>
+<meta name="description" content="BAM'S BARBERS Larnaca. West End London craft, proper fades, beards and the boys' barbershop. Book your chair online."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a0d;--bg2:#100e13;--panel:#16131b;--panel2:#1e1a25;
+  --line:#2a2630;--line2:#3a3442;--cream:#f4efe6;--dim:#9a929e;--dimmer:#6c6571;
+  --yellow:#FFC21A;--yellow-l:#FFD64D;--yellow-d:#E0A400;
+  --red:#E23B2E;--blue:#2E7BE2;
+  --drew:#111114;--drew-l:#39383d;--tony:#8a1418;--tony-l:#c4262c;--anton:#13315c;--anton-l:#2f6bc4;
+  --skin:#c6a585;--hairc:#3f342b;--steel:#cdd0d8;--wood:#4a3528;
+  --max:1280px;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --ease-drawer:cubic-bezier(0.32,0.72,0,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--cream);font-family:'Rubik',system-ui,sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,a{touch-action:manipulation}
+::selection{background:var(--yellow);color:#000}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;line-height:.95;text-transform:uppercase;letter-spacing:.5px}
+.eyebrow{font-family:'Bungee',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);display:inline-block}
+.chunk-card{background:var(--panel);border:3px solid var(--line2);border-radius:18px;box-shadow:0 10px 0 #000,0 14px 30px rgba(0,0,0,.5)}
+
+/* ── buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Bungee',sans-serif;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;padding:16px 30px;border:0;border-radius:14px;cursor:pointer;transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out),background-color 160ms ease,color 160ms ease;will-change:transform;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:-50%;left:-60%;width:36%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-14deg);pointer-events:none;transition:none}
+.btn-yellow{background:var(--yellow);color:#1a1300;box-shadow:0 6px 0 var(--yellow-d),0 10px 18px rgba(0,0,0,.45)}
+.btn-yellow:active{transform:translateY(5px);box-shadow:0 1px 0 var(--yellow-d),0 3px 8px rgba(0,0,0,.4)}
+.btn-outline{background:rgba(11,10,13,.5);color:var(--cream);border:3px solid var(--line2);box-shadow:0 6px 0 #000}
+.btn-outline:active{transform:translateY(5px);box-shadow:0 1px 0 #000}
+.btn-sm{padding:11px 20px;font-size:.72rem;border-radius:11px}
+/* pulsing glow on main CTAs */
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 6px 0 var(--yellow-d),0 10px 18px rgba(0,0,0,.45),0 0 0 0 rgba(255,194,26,0)}
+  50%{box-shadow:0 6px 0 var(--yellow-d),0 10px 18px rgba(0,0,0,.45),0 0 26px 8px rgba(255,194,26,.38)}}
+.btn-yellow.pulse{animation:glowPulse 2.6s ease-in-out infinite}
+@keyframes sheen{0%{left:-60%}100%{left:140%}}
+@media(hover:hover) and (pointer:fine){
+  .btn-yellow:hover{transform:translateY(-3px);box-shadow:0 10px 0 var(--yellow-d),0 18px 30px rgba(0,0,0,.55);background:var(--yellow-l)}
+  .btn-yellow:hover::after{animation:sheen .55s ease forwards}
+  .btn-outline:hover{transform:translateY(-3px);border-color:var(--yellow);color:var(--yellow);box-shadow:0 10px 0 #000}
+}
+
+/* ════ NAV ════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background-color 280ms ease,box-shadow 280ms ease,padding 280ms ease;padding:18px 0}
+.nav.scrolled{background:rgba(11,10,13,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 2px 0 var(--line),0 8px 24px rgba(0,0,0,.5);padding:10px 0}
+.nav-i{max-width:var(--max);margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);box-shadow:0 4px 0 #000}
+.logo-fallback{width:50px;height:50px;flex:none}
+.logo-name{font-family:'Anton',sans-serif;font-size:1.25rem;letter-spacing:1px;line-height:.85;display:flex;flex-direction:column}
+.logo-name small{font-family:'Bungee',sans-serif;font-size:.5rem;letter-spacing:2px;color:var(--yellow);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-links a{font-family:'Bungee',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);padding:9px 13px;border-radius:9px;transition:color 160ms ease,background-color 160ms ease}
+@media(hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--cream);background:var(--panel2)}}
+.nav-book{margin-left:6px}
+.burger{display:none;flex-direction:column;gap:5px;background:var(--panel);border:3px solid var(--line2);border-radius:11px;padding:11px 10px;cursor:pointer;box-shadow:0 4px 0 #000}
+.burger span{width:22px;height:3px;background:var(--yellow);border-radius:3px;transition:transform 280ms var(--ease-out),opacity 200ms ease}
+.burger.x span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0}
+.burger.x span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ════ HERO ════ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px;background:#0b0a0d}
+/* ════ MANCAVE HERO BACKGROUND — pure CSS ════ */
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#0a0806}
+
+/* Premium charcoal base — deep, warm, dimensional */
+.hbrick{position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%,rgba(40,30,18,.9) 0%,transparent 55%),
+    radial-gradient(circle at 50% 120%,rgba(20,16,22,.9) 0%,transparent 60%),
+    linear-gradient(160deg,#15131a 0%,#0e0c12 45%,#0a0809 100%)}
+
+/* Fine carbon-weave texture overlay — barely-there, premium */
+.hweave{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 1px,transparent 1px 5px),
+    repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 5px)}
+
+/* Big warm spotlight behind the wordmark */
+.hglow1{position:absolute;top:-18%;left:8%;width:680px;height:105%;
+  background:radial-gradient(ellipse at 50% 22%,rgba(255,170,45,.22) 0%,rgba(255,130,25,.08) 40%,transparent 70%);
+  pointer-events:none;filter:blur(6px)}
+/* Top-right accent glow */
+.hglow2{position:absolute;top:-12%;right:4%;width:480px;height:80%;
+  background:radial-gradient(ellipse at 60% 0%,rgba(255,150,40,.12) 0%,rgba(255,110,20,.04) 38%,transparent 66%);
+  pointer-events:none}
+
+/* Checkerboard floor — perspective, fades upward */
+.hfloor{position:absolute;bottom:0;left:-30%;right:-30%;height:36%;
+  background:repeating-conic-gradient(#1b1820 0% 25%,#0d0b10 0% 50%) 0 0/46px 46px;
+  transform:perspective(700px) rotateX(55deg);
+  transform-origin:center bottom;
+  -webkit-mask-image:linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.5) 35%,transparent 100%);
+  mask-image:linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.5) 35%,transparent 100%)}
+
+/* Soft pinstripe sheen — premium tailored feel */
+.hstripe{position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 38px,rgba(255,194,26,.015) 38px,rgba(255,194,26,.015) 39px);
+  -webkit-mask-image:radial-gradient(ellipse 80% 90% at 50% 30%,#000 0%,transparent 80%);
+  mask-image:radial-gradient(ellipse 80% 90% at 50% 30%,#000 0%,transparent 80%);
+  pointer-events:none}
+
+/* Bottom fog — blends floor into scene */
+.hfog{position:absolute;bottom:0;left:0;right:0;height:50%;
+  background:linear-gradient(0deg,rgba(10,8,6,.92) 0%,rgba(10,8,6,.55) 30%,transparent 100%);
+  pointer-events:none}
+
+/* Top vignette */
+.htop{position:absolute;top:0;left:0;right:0;height:40%;
+  background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,transparent 100%);
+  pointer-events:none}
+
+/* Side vignettes */
+.hside{position:absolute;inset:0;
+  background:radial-gradient(ellipse 90% 100% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);
+  pointer-events:none}
+
+/* Yellow vertical accent bar — left edge */
+.hbar{position:absolute;left:0;top:8%;bottom:8%;width:4px;
+  background:linear-gradient(180deg,transparent,var(--yellow) 20%,var(--yellow) 80%,transparent);
+  opacity:.7}
+
+/* Readability haze — text zone (left) stays readable */
+.haze{position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:
+    linear-gradient(108deg,rgba(10,8,6,.92) 0%,rgba(10,8,6,.78) 25%,rgba(10,8,6,.32) 52%,transparent 100%),
+    linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 24%,transparent 58%,rgba(0,0,0,.7) 100%)}
+
+/* in-scene CTA */
+.scene-cta{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);display:flex;gap:14px;z-index:9;pointer-events:auto;flex-wrap:wrap;justify-content:center}
+
+.hero-inner{position:relative;z-index:6;width:100%;border-left:5px solid var(--yellow);padding-left:22px}
+.hero-flag{display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,.72);border:2px solid rgba(255,194,26,.4);border-radius:8px;padding:9px 18px;margin-bottom:30px;backdrop-filter:blur(6px)}
+.hero-flag .dot{width:9px;height:9px;border-radius:50%;background:#37d871;box-shadow:0 0 10px #37d871;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-flag span{font-family:'Bungee',sans-serif;font-size:.66rem;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:clamp(4rem,13vw,9.5rem);letter-spacing:1px;text-shadow:0 8px 0 #000,0 14px 40px rgba(0,0,0,.95);line-height:.88}
+.hero h1 .y{color:var(--yellow);-webkit-text-stroke:3px #000;text-shadow:0 8px 0 #000,0 0 60px rgba(255,194,26,.6)}
+.hero-sub{font-size:clamp(1rem,2vw,1.18rem);font-weight:600;max-width:460px;margin:26px 0 8px;color:var(--cream);text-shadow:0 2px 14px rgba(0,0,0,.95);line-height:1.55}
+.hero-sub b{color:var(--yellow)}
+.hero-stats{margin-top:38px;display:inline-flex;flex-wrap:wrap;background:rgba(0,0,0,.65);border:2px solid var(--line2);border-radius:12px;overflow:hidden;backdrop-filter:blur(8px)}
+.hstat{padding:18px 28px;position:relative}
+.hstat b{font-family:'Anton',sans-serif;font-size:2.8rem;color:var(--yellow);display:block;line-height:1;text-shadow:0 4px 0 #000}
+.hstat span{font-family:'Bungee',sans-serif;font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--dim);display:block;margin-top:3px}
+.hstat:not(:last-child){border-right:2px solid var(--line2)}
+
+/* ════ MARQUEE ════ */
+.marquee{background:var(--yellow);color:#1a1300;border-top:4px solid #000;border-bottom:4px solid #000;overflow:hidden;padding:13px 0;position:relative;z-index:5}
+.marquee-track{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:scroll 36s linear infinite;font-family:'Bungee','Arial Black',sans-serif;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;will-change:transform}
+.marquee-track span{display:inline-flex;align-items:center;gap:40px}
+.marquee-track span::after{content:"\2702";font-size:1rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ════ SECTION HEAD ════ */
+.sec{padding:96px 0;position:relative}
+.sh{text-align:center;max-width:680px;margin:0 auto 56px}
+.sh h2{font-size:clamp(2.4rem,6vw,4.6rem);margin:10px 0;text-shadow:0 5px 0 #000}
+.sh h2 .y{color:var(--yellow);-webkit-text-stroke:2px #000}
+.sh p{color:var(--dim);font-size:1.05rem;font-weight:500}
+
+/* ════ SERVICES / MENU BOARD with animations ════ */
+#services{background:var(--bg)}
+.menu-board{max-width:var(--max);margin:0 auto}
+.menu-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:34px;flex-wrap:wrap}
+.menu-tab{font-family:'Bungee',sans-serif;font-size:.74rem;text-transform:uppercase;letter-spacing:.5px;padding:12px 22px;border-radius:12px;border:3px solid var(--line2);background:var(--panel);color:var(--dim);cursor:pointer;box-shadow:0 5px 0 #000;transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out),color 160ms ease,border-color 160ms ease}
+.menu-tab.active{color:#1a1300;background:var(--yellow);border-color:#000;box-shadow:0 5px 0 var(--yellow-d)}
+.menu-tab:active{transform:translateY(3px);box-shadow:0 2px 0 #000}
+@media(hover:hover) and (pointer:fine){.menu-tab:not(.active):hover{color:var(--cream);border-color:var(--yellow)}}
+.menu-panel{display:none}
+.menu-panel.show{display:block;animation:fadeUp .4s var(--ease-out)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.price-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.price-row{display:flex;flex-direction:column;background:var(--panel);border:3px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 6px 0 #000;transition:transform 160ms var(--ease-out),border-color 160ms ease}
+@media(hover:hover) and (pointer:fine){.price-row:hover{transform:translateY(-5px);border-color:var(--yellow)}}
+.cut-tile{position:relative;height:190px;overflow:hidden;background:#0a090d;border-bottom:3px solid var(--line2)}
+.cut-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;filter:brightness(.7) saturate(.7);transition:transform 500ms var(--ease-out),filter 500ms ease}
+.price-row:hover .cut-tile img{transform:scale(1.07);filter:brightness(.9) saturate(1)}
+.cut-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.58) 100%);z-index:1;pointer-events:none}
+.price-row.feat .cut-tile::before{content:"\2605 POPULAR";position:absolute;top:10px;right:10px;font-family:'Bungee',sans-serif;font-size:.5rem;color:#1a1300;background:var(--yellow);padding:5px 9px;border-radius:7px;letter-spacing:1px;z-index:4}
+.price-meta{display:flex;align-items:center;gap:10px;padding:18px 18px}
+.price-meta .nm{font-family:'Anton',sans-serif;font-size:1.12rem;letter-spacing:.3px;flex:1;line-height:1}
+.price-meta .dur{font-family:'Bungee',sans-serif;font-size:.5rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+.price-meta .pr{font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--yellow);text-shadow:0 3px 0 #000}
+.menu-book{text-align:center;margin-top:34px}
+
+
+/* ════ QUOTE ════ */
+.quote{background:var(--yellow);color:#161200;border-top:4px solid #000;border-bottom:4px solid #000;padding:80px 0;position:relative;overflow:hidden}
+.quote-tex{position:absolute;inset:0;opacity:.07;background-image:repeating-linear-gradient(45deg,#000 0 2px,transparent 2px 22px)}
+.quote blockquote{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
+.quote .mark{font-family:'Anton';font-size:5rem;line-height:.4;display:block}
+.quote q{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,5vw,3.8rem);text-transform:uppercase;line-height:1.02;letter-spacing:.5px;quotes:none}
+.quote cite{font-family:'Bungee',sans-serif;font-style:normal;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;display:block;margin-top:26px}
+
+/* ════ BARBERS + GARAGE ════ */
+#team{background:var(--bg2)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;perspective:1200px}
+.barber{position:relative;border-radius:20px;overflow:hidden;border:3px solid var(--line2);box-shadow:0 12px 0 #000,0 16px 34px rgba(0,0,0,.5);transition:opacity .6s var(--ease-out),transform .25s var(--ease-out),box-shadow .2s var(--ease-out),border-color .2s ease;transform-style:preserve-3d;background:var(--panel);opacity:0;transform:translateY(30px)}
+.garage.open .barber{opacity:1;transform:none}
+.garage.open .barber:nth-child(1){transition-delay:.5s}
+.garage.open .barber:nth-child(2){transition-delay:.66s}
+.garage.open .barber:nth-child(3){transition-delay:.82s}
+.barber.drew{--c:var(--drew);--cl:var(--drew-l)}
+.barber.tony{--c:var(--tony);--cl:var(--tony-l)}
+.barber.anton{--c:var(--anton);--cl:var(--anton-l)}
+.b-photo{position:relative;aspect-ratio:4/4.4;overflow:hidden;background:#000}
+.b-photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform 500ms var(--ease-out)}
+.b-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.4) 70%,var(--panel) 100%)}
+.b-tag{position:absolute;top:14px;left:14px;z-index:2;font-family:'Bungee',sans-serif;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--cl);border:2px solid #000;border-radius:8px;padding:6px 11px;box-shadow:0 3px 0 #000}
+.b-color-bar{height:8px;background:var(--cl)}
+.b-body{padding:20px 22px 24px;position:relative}
+.b-name{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:.5px}
+.b-role{font-family:'Bungee',sans-serif;font-size:.6rem;color:var(--cl);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.b-bio{font-size:.86rem;color:var(--dim);margin:12px 0 18px;font-weight:500;min-height:62px}
+.b-btn{width:100%;font-family:'Bungee',sans-serif;font-size:.76rem;text-transform:uppercase;letter-spacing:.5px;padding:15px;border:3px solid #000;border-radius:13px;cursor:pointer;color:#fff;background:var(--c);box-shadow:0 6px 0 #000;transition:transform 140ms var(--ease-out),box-shadow 140ms var(--ease-out),filter 160ms ease}
+.barber.drew .b-btn{background:var(--drew);border-color:var(--drew-l)}
+.b-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #000}
+@media(hover:hover) and (pointer:fine){
+  .barber:hover{border-color:var(--cl);box-shadow:0 16px 0 #000,0 22px 40px rgba(0,0,0,.6)}
+  .barber:hover .b-photo img{transform:scale(1.06)}
+  .b-btn:hover{filter:brightness(1.25);transform:translateY(-2px);box-shadow:0 8px 0 #000}
+}
+/* garage roller shutter */
+.garage{position:relative;border-radius:16px;margin-bottom:34px}
+.garage-frame{position:relative;border-radius:14px;overflow:hidden;padding:22px;background:var(--bg)}
+.garage-door{position:absolute;inset:0;z-index:6;transform-origin:top;transition:transform 1.2s var(--ease-drawer);border-radius:14px;
+  background:repeating-linear-gradient(180deg,#2a2730 0 22px,#1c1a23 22px 26px,#231f2a 26px 48px,#131119 48px 52px);
+  box-shadow:inset 0 -26px 40px rgba(0,0,0,.72),inset 0 10px 0 rgba(255,255,255,.04)}
+.garage-door::before{content:"";position:absolute;top:0;bottom:0;left:0;width:14px;background:linear-gradient(90deg,#3a3742,#16131b);box-shadow:2px 0 7px rgba(0,0,0,.5)}
+.garage-door::after{content:"";position:absolute;top:0;bottom:0;right:0;width:14px;background:linear-gradient(270deg,#3a3742,#16131b);box-shadow:-2px 0 7px rgba(0,0,0,.5)}
+.garage-rail{position:absolute;left:0;right:0;bottom:0;height:26px;background:linear-gradient(180deg,#3a3742,#0c0b0e);border-top:2px solid var(--yellow)}
+.garage-handle{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:120px;height:12px;background:linear-gradient(180deg,#9498a0,#54565c);border-radius:8px;box-shadow:0 3px 0 #000}
+.garage-label{position:absolute;left:50%;top:42%;transform:translateX(-50%);font-family:'Bungee',sans-serif;font-size:.74rem;letter-spacing:3px;color:var(--yellow);opacity:.85;white-space:nowrap}
+.garage.open .garage-door{transform:scaleY(0)}
+
+/* ════ GALLERY ════ */
+#gallery{background:var(--bg)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;gap:14px;max-width:var(--max);margin:0 auto;padding:0 28px}
+.gal-item{overflow:hidden;border-radius:16px;border:3px solid var(--line2);box-shadow:0 8px 0 #000;position:relative;cursor:zoom-in;transition:transform 200ms var(--ease-out),box-shadow 200ms var(--ease-out),border-color 200ms ease}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 600ms var(--ease-out)}
+.gal-item.big{grid-column:span 2;grid-row:span 2}
+.gal-item.tall{grid-row:span 2}
+.gal-item.wide{grid-column:span 2}
+@media(hover:hover) and (pointer:fine){.gal-item:hover{border-color:var(--yellow);transform:translateY(-4px);box-shadow:0 12px 0 #000}.gal-item:hover img{transform:scale(1.08)}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:480;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,4,8,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);visibility:hidden;opacity:0;transition:opacity .25s var(--ease-out),visibility 0s linear .25s}
+.lb.open{visibility:visible;opacity:1;transition:opacity .25s var(--ease-out)}
+.lb img{max-width:92vw;max-height:88vh;border-radius:14px;border:3px solid var(--line2);box-shadow:0 0 0 4px #000,0 30px 80px rgba(0,0,0,.7);transform:scale(.96);transition:transform .3s var(--ease-out)}
+.lb.open img{transform:none}
+.lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;display:grid;place-items:center;background:var(--panel);border:3px solid var(--line2);border-radius:11px;color:var(--cream);cursor:pointer;box-shadow:0 4px 0 #000}
+
+/* ════ ABOUT ════ */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:var(--max);margin:0 auto;padding:0 28px}
+.about-img{border-radius:20px;overflow:hidden;border:3px solid var(--line2);box-shadow:0 14px 0 #000;aspect-ratio:4/3.4;position:relative}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-txt h2{font-size:clamp(2.2rem,5vw,3.8rem);margin:10px 0 18px;text-shadow:0 4px 0 #000}
+.about-txt h2 .y{color:var(--yellow);-webkit-text-stroke:2px #000}
+.about-txt p{color:var(--dim);margin-bottom:14px;font-weight:500}
+.about-txt p b{color:var(--cream)}
+.about-stats{display:flex;gap:14px;margin-top:26px}
+.astat{flex:1;background:var(--panel);border:3px solid var(--line2);border-radius:14px;padding:16px;text-align:center;box-shadow:0 6px 0 #000}
+.astat b{font-family:'Anton',sans-serif;font-size:2.2rem;color:var(--yellow);display:block;line-height:1;text-shadow:0 3px 0 #000}
+.astat span{font-family:'Bungee',sans-serif;font-size:.52rem;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
+
+/* ════ REVIEWS ════ */
+#reviews{background:var(--bg)}
+.rev-hero{display:flex;align-items:center;gap:24px;justify-content:center;margin-bottom:48px;flex-wrap:wrap}
+.rev-big{font-family:'Anton',sans-serif;font-size:6rem;color:var(--yellow);line-height:.8;text-shadow:0 6px 0 #000}
+.rev-stars{color:var(--yellow);font-size:1.5rem;letter-spacing:3px}
+.rev-count{color:var(--dim);font-weight:500;margin-top:4px}
+.rev-count strong{color:var(--cream)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rev-card{background:var(--panel);border:3px solid var(--line2);border-radius:16px;padding:26px;box-shadow:0 8px 0 #000;transition:transform 180ms var(--ease-out),border-color 180ms ease}
+.r-stars{color:var(--yellow);letter-spacing:2px;margin-bottom:12px}
+.r-text{font-size:.95rem;font-weight:500;color:var(--cream);line-height:1.55}
+.r-name{font-family:'Bungee',sans-serif;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-top:16px}
+@media(hover:hover) and (pointer:fine){.rev-card:hover{transform:translateY(-5px);border-color:var(--yellow)}}
+
+/* ════ VISIT ════ */
+#visit{background:var(--bg2)}
+.visit-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:34px;max-width:var(--max);margin:0 auto;padding:0 28px}
+.v-card{background:var(--panel);border:3px solid var(--line2);border-radius:18px;padding:30px;box-shadow:0 10px 0 #000}
+.v-card h3{font-size:1.6rem;margin-bottom:18px}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:11px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:.92rem}
+.hours td:last-child{text-align:right;color:var(--dim);font-family:'Bungee',sans-serif;font-size:.7rem}
+.hours tr.today td{color:var(--yellow)}
+.hours tr.today td:last-child{color:var(--yellow)}
+.hours td.cl{color:var(--red)}
+.contacts{list-style:none;margin-top:22px;display:grid;gap:14px}
+.contacts li{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:500;color:var(--cream)}
+.contacts svg{flex:none;color:var(--yellow)}
+.map{border-radius:18px;overflow:hidden;border:3px solid var(--line2);box-shadow:0 10px 0 #000;min-height:420px}
+.map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.3) contrast(1.1)}
+
+/* ════ CTA ════ */
+.cta{padding:100px 0;text-align:center;background:radial-gradient(120% 100% at 50% 0%,#1b1722,var(--bg));border-top:4px solid #000}
+.cta h2{font-size:clamp(2.6rem,7vw,5rem);text-shadow:0 5px 0 #000}
+.cta h2 .y{color:var(--yellow);-webkit-text-stroke:2px #000}
+.cta p{color:var(--dim);max-width:520px;margin:16px auto 32px;font-weight:500}
+
+/* ════ FOOTER ════ */
+footer{background:var(--bg);border-top:4px solid #000;padding:60px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px}
+.foot-name{font-family:'Anton',sans-serif;font-size:1.8rem;letter-spacing:1px}
+.foot-name .y{color:var(--yellow)}
+footer p{color:var(--dim);font-weight:500;font-size:.9rem;margin-top:12px;max-width:300px}
+footer h4{font-family:'Bungee',sans-serif;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:9px}
+footer ul a,footer ul li{color:var(--dim);font-weight:500;font-size:.9rem;transition:color 160ms ease}
+@media(hover:hover) and (pointer:fine){footer ul a:hover{color:var(--yellow)}}
+.foot-bot{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--dimmer);font-size:.78rem;font-family:'Bungee',sans-serif;letter-spacing:.5px;text-transform:uppercase}
+
+/* ════ MOBILE BOOK BAR ════ */
+.mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:150;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(11,10,13,.95);backdrop-filter:blur(10px);border-top:3px solid #000;box-shadow:0 -6px 20px rgba(0,0,0,.5)}
+.mob-bar .btn{width:100%}
+
+/* ════ BOOKING MODAL ════ */
+.bk-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,4,8,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);visibility:hidden;opacity:0;pointer-events:none;transition:opacity 250ms var(--ease-out),visibility 0s linear 250ms}
+.bk-overlay.open{visibility:visible;opacity:1;pointer-events:auto;transition:opacity 250ms var(--ease-out)}
+.bk-modal{background:var(--panel);border:3px solid var(--line2);border-radius:20px;width:100%;max-width:980px;height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 4px #000,0 30px 80px rgba(0,0,0,.7);transform:translateY(20px) scale(.97);opacity:0;transition:transform 340ms var(--ease-out),opacity 280ms var(--ease-out)}
+.bk-overlay.open .bk-modal{transform:none;opacity:1}
+.bk-head{padding:18px 24px;border-bottom:3px solid var(--line2);display:flex;align-items:center;justify-content:space-between;gap:16px;flex:none;background:var(--panel2)}
+.bk-head h2{font-size:1.5rem}
+.bk-head .eyebrow{display:block;margin-bottom:2px}
+.bk-close{width:42px;height:42px;display:grid;place-items:center;background:var(--panel);border:3px solid var(--line2);border-radius:11px;cursor:pointer;color:var(--cream);box-shadow:0 4px 0 #000;transition:transform 140ms var(--ease-out),color 160ms ease,border-color 160ms ease}
+.bk-close:active{transform:translateY(3px);box-shadow:0 1px 0 #000}
+@media(hover:hover) and (pointer:fine){.bk-close:hover{color:var(--yellow);border-color:var(--yellow)}}
+.bk-iframe-wrap{flex:1;min-height:0;background:#fff}
+.bk-iframe-wrap iframe{width:100%;height:100%;border:0;display:block}
+
+/* ════ MOBILE NAV MENU ════ */
+.mob-menu{position:fixed;inset:0;z-index:190;background:var(--bg);padding:calc(90px + env(safe-area-inset-top)) 28px calc(28px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;transform:translateX(100%);transition:transform 360ms var(--ease-drawer);visibility:hidden;overflow-y:auto;overscroll-behavior:contain}
+.mob-menu.open{transform:none;visibility:visible}
+.mob-menu a{font-family:'Anton',sans-serif;font-size:1.8rem;text-transform:uppercase;padding:12px 0;border-bottom:2px solid var(--line);color:var(--cream)}
+.mob-menu .btn{margin-top:18px}
+
+/* ════ SCROLL REVEAL ════ */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}
+
+/* ════ RESPONSIVE ════ */
+@media(max-width:980px){
+  .price-list{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:34px}
+  .visit-grid{grid-template-columns:1fr}
+  .map{min-height:320px}
+  .rev-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── TABLET / MOBILE ── */
+@media(max-width:768px){
+  /* Nav */
+  .nav-links,.nav-book{display:none}
+  .burger{display:flex}
+  .nav{padding:14px 0}
+
+  /* Hero — full screen flex column */
+  .hero{
+    padding:0;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch
+  }
+  .hero-inner{
+    flex:1;
+    padding:calc(100px + env(safe-area-inset-top)) 22px 0;
+    border-left-width:4px;
+    padding-left:calc(16px + 4px + 12px)
+  }
+  .hero-flag{padding:8px 14px;margin-bottom:22px;border-radius:7px}
+  .hero-flag span{font-size:.6rem}
+  .hero h1{font-size:clamp(3.5rem,16vw,5.8rem);line-height:.88}
+  .hero h1 .y{-webkit-text-stroke:2px #000}
+  .hero-sub{font-size:.95rem;max-width:100%;margin:18px 0 6px;line-height:1.5}
+  .hero-stats{
+    margin-top:26px;
+    display:inline-flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:10px;
+    max-width:100%
+  }
+  .hero-stats::-webkit-scrollbar{display:none}
+  .hstat{padding:14px 20px;flex:none}
+  .hstat b{font-size:2rem}
+
+  /* CTAs — flow below text, full width */
+  .scene-cta{
+    position:static;
+    transform:none;
+    left:auto;
+    bottom:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:28px 22px calc(28px + env(safe-area-inset-bottom));
+    pointer-events:auto;
+    z-index:9
+  }
+  .scene-cta .btn{
+    width:100%;
+    text-align:center;
+    font-size:.92rem;
+    padding:20px 24px;
+    border-radius:14px
+  }
+  .scene-cta .btn-yellow{box-shadow:0 5px 0 var(--yellow-d)}
+  .scene-cta .btn-outline{box-shadow:0 5px 0 #000}
+
+  /* Keep the spotlight; trim extra decorative layers on mobile for perf */
+  .hglow2,.hside{display:none}
+  .hglow1{left:50%;transform:translateX(-50%);width:140%}
+
+  /* Sections */
+  .sec{padding:60px 0}
+  .wrap{padding:0 20px}
+  .sh h2{font-size:clamp(2rem,8vw,3rem)}
+
+  /* Services grid */
+  .price-list{grid-template-columns:1fr;gap:14px}
+  .cut-tile{height:160px}
+  .menu-tabs{gap:8px}
+  .menu-tab{padding:10px 16px;font-size:.7rem}
+
+  /* Team */
+  .team-grid{max-width:100%}
+  .b-body{padding:16px 18px 20px}
+
+  /* Gallery */
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px;gap:10px}
+  .gal-item.big{grid-column:span 2;grid-row:span 2}
+
+  /* Reviews */
+  .rev-grid{gap:14px}
+
+  /* Visit */
+  .visit-grid{gap:20px}
+
+  /* Footer */
+  .mob-bar{display:block}
+  footer{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px 16px}
+
+  /* Booking modal */
+  .bk-overlay{padding:0;align-items:flex-end}
+  .bk-modal{
+    height:94vh;
+    max-width:100%;
+    border-radius:22px 22px 0 0;
+    transform:translateY(100%);
+    opacity:1;
+    transition:transform 380ms var(--ease-drawer)
+  }
+  .bk-overlay.open .bk-modal{transform:none}
+
+  /* Quote section */
+  .quote{padding:56px 0}
+  .quote q{font-size:clamp(1.6rem,6vw,2.8rem)}
+  .quote .mark{font-size:3.5rem}
+
+  /* Marquee */
+  .marquee-track{font-size:.75rem;gap:28px}
+  .marquee{padding:11px 0}
+}
+
+/* ── SMALL MOBILE ── */
+@media(max-width:480px){
+  .foot-grid{grid-template-columns:1fr}
+  .about-stats{flex-direction:column}
+  .hstat{padding:12px 16px}
+  .hstat b{font-size:1.8rem}
+  .hero-inner{padding-left:calc(14px + 4px + 10px)}
+  .hero h1{font-size:clamp(3.2rem,18vw,5rem)}
+  .price-list{gap:12px}
+  .cut-tile{height:140px}
+  .sh h2{font-size:clamp(1.8rem,9vw,2.6rem)}
+  .gal-grid{grid-auto-rows:110px}
+  .menu-tab{padding:9px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  .barber{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ LIGHTBOX ════ -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">
+    <svg width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 1l12 12M13 1L1 13"/></svg>
+  </button>
+  <img id="lb-img" alt="">
+</div>
+
+<!-- ════ BOOKING MODAL ════ -->
+<div class="bk-overlay" id="bk-overlay" role="dialog" aria-modal="true" aria-label="Book an appointment">
+  <div class="bk-modal">
+    <div class="bk-head">
+      <div><span class="eyebrow">Online Booking</span><h2>Grab Your Chair</h2></div>
+      <button class="bk-close" id="bk-close" aria-label="Close booking">
+        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 1l12 12M13 1L1 13"/></svg>
+      </button>
+    </div>
+    <div class="bk-iframe-wrap"><iframe id="bk-iframe" src="about:blank" title="Book at BAM'S BARBERS" allow="payment"></iframe></div>
+  </div>
+</div>
+
+<!-- ════ MOBILE MENU ════ -->
+<nav class="mob-menu" id="mob-menu">
+  <a href="#services">The Cuts</a>
+  <a href="#team">The Boys</a>
+  <a href="#gallery">The Shop</a>
+  <a href="#about">Our Story</a>
+  <a href="#visit">Visit Us</a>
+  <button class="btn btn-yellow bk-open">Book Now →</button>
+</nav>
+
+<!-- ════ NAV ════ -->
+<header class="nav" id="nav">
+  <div class="nav-i">
+    <a href="#top" class="logo">
+      <img src="images/logo.png" class="logo-img" alt="BAM'S BARBERS" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='block'">
+      <span class="logo-fallback" id="logo-fb" style="display:none">
+        <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="24" fill="#000" stroke="#FFC21A" stroke-width="2"/><circle cx="25" cy="25" r="13" fill="#FFC21A"/><rect x="13" y="20" width="24" height="6" rx="3" fill="#111" transform="rotate(-8 25 23)"/><path d="M18 30 Q25 36 32 30" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      </span>
+      <span class="logo-name">BAM'S BARBERS<small>London · Larnaca</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">The Cuts</a></li>
+      <li><a href="#team">The Boys</a></li>
+      <li><a href="#gallery">The Shop</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <button class="btn btn-yellow btn-sm nav-book bk-open">Book Now</button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ════ HERO — ILLUSTRATED SHOP INTERIOR ════ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hbrick"></div>
+    <div class="hweave"></div>
+    <div class="hglow1"></div>
+    <div class="hglow2"></div>
+    <div class="hfloor"></div>
+    <div class="hstripe"></div>
+    <div class="hfog"></div>
+    <div class="htop"></div>
+    <div class="hside"></div>
+    <div class="hbar"></div>
+  </div>
+
+  <!-- readability haze -->
+  <div class="haze" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <div class="hero-flag"><span style="color:var(--yellow);font-size:1rem">★★★★★</span><span>4.9 Rated · 647 Reviews · Since 2015</span></div>
+    <h1>BAM'S<br><span class="y">BARBERS</span></h1>
+    <p class="hero-sub"><b>West End London craft</b>, planted in Larnaca. Proper fades, sharp beards and a chair that's worth the wait.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>25</b><span>Years Craft</span></div>
+      <div class="hstat"><b>647</b><span>5★ Reviews</span></div>
+      <div class="hstat"><b>3</b><span>The Boys</span></div>
+    </div>
+  </div>
+
+  <!-- CTA buttons -->
+  <div class="scene-cta">
+    <button class="btn btn-yellow pulse bk-open" style="font-size:.9rem;padding:16px 30px">Book Your Chair →</button>
+    <a class="btn btn-outline" href="#services" style="font-size:.9rem;padding:16px 30px">See The Cuts</a>
+  </div>
+</section>
+
+<!-- ════ MARQUEE ════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Skin Fades · Beards · Classic Cuts · 4.9 Stars · West End London · For The Boys · Walk-Ins · Est. 2015</span>
+    <span>Skin Fades · Beards · Classic Cuts · 4.9 Stars · West End London · For The Boys · Walk-Ins · Est. 2015</span>
+    <span>Skin Fades · Beards · Classic Cuts · 4.9 Stars · West End London · For The Boys · Walk-Ins · Est. 2015</span>
+    <span>Skin Fades · Beards · Classic Cuts · 4.9 Stars · West End London · For The Boys · Walk-Ins · Est. 2015</span>
+  </div>
+</div>
+
+<!-- ════ SERVICES — price board with per-row cut animations ════ -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eyebrow">The Menu</span>
+      <h2>The <span class="y">Cuts</span> &amp; Prices</h2>
+      <p>No surprises. Pick what you want, we'll handle the rest.</p>
+    </div>
+    <div class="menu-board rv">
+      <div class="menu-tabs">
+        <button class="menu-tab active" data-p="cuts">Cuts</button>
+        <button class="menu-tab" data-p="beard">Beard</button>
+        <button class="menu-tab" data-p="packages">Packages</button>
+      </div>
+
+      <!-- CUTS -->
+      <div class="menu-panel show" id="p-cuts">
+        <div class="price-list">
+          <div class="price-row feat"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fFMJW4krDf5i/6baec838-63d5-4c77-af5a-e1e54677ba12.jpeg" alt="Skin Fade Cut" loading="lazy"></div><div class="price-meta"><span class="nm">Skin Fade Cut</span><span class="dur">30 min</span><span class="pr">€16</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fmuWP5JrNtpL/7cab38d8-d3da-4265-a9bf-044fa719cb5f.jpeg" alt="Normal Cut" loading="lazy"></div><div class="price-meta"><span class="nm">Normal Cut</span><span class="dur">25 min</span><span class="pr">€14</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fMSUUyMfvOgr/aed460fa-bd11-4869-af95-4485945492c0.jpeg" alt="Normal Cut + Wash" loading="lazy"></div><div class="price-meta"><span class="nm">Normal Cut + Wash</span><span class="dur">30 min</span><span class="pr">€17</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fwVjZlbyZTdu/2933544e-5c83-458b-99cb-f53474a46efc.jpeg" alt="Long Hair" loading="lazy"></div><div class="price-meta"><span class="nm">Long Hair</span><span class="dur">35 min</span><span class="pr">€20</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fML7eYxjkxxK/478c6470-c731-42b4-973f-9137d98c89db.jpeg" alt="Kids Cut" loading="lazy"></div><div class="price-meta"><span class="nm">Kids — Under 10</span><span class="dur">25 min</span><span class="pr">€12</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fz1bIn4Uudl5/66747ef5-df75-45b4-88b1-06402c137292.jpeg" alt="Senior Cut" loading="lazy"></div><div class="price-meta"><span class="nm">Senior — 65+</span><span class="dur">20 min</span><span class="pr">€12</span></div></div>
+        </div>
+      </div>
+
+      <!-- BEARD -->
+      <div class="menu-panel" id="p-beard">
+        <div class="price-list">
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fFMJW4krDf5i/6baec838-63d5-4c77-af5a-e1e54677ba12.jpeg" alt="Short Beard Trim" loading="lazy"></div><div class="price-meta"><span class="nm">Short Beard Trim</span><span class="dur">15 min</span><span class="pr">€5</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fmuWP5JrNtpL/7cab38d8-d3da-4265-a9bf-044fa719cb5f.jpeg" alt="Long Beard" loading="lazy"></div><div class="price-meta"><span class="nm">Long Beard</span><span class="dur">20 min</span><span class="pr">€10</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fMSUUyMfvOgr/aed460fa-bd11-4869-af95-4485945492c0.jpeg" alt="Wax" loading="lazy"></div><div class="price-meta"><span class="nm">Wax — Ears or Nose</span><span class="dur">5 min</span><span class="pr">€3</span></div></div>
+        </div>
+      </div>
+
+      <!-- PACKAGES -->
+      <div class="menu-panel" id="p-packages">
+        <div class="price-list">
+          <div class="price-row feat"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fFMJW4krDf5i/6baec838-63d5-4c77-af5a-e1e54677ba12.jpeg" alt="Skin Fade + Beard" loading="lazy"></div><div class="price-meta"><span class="nm">Skin Fade + Beard Trim</span><span class="dur">45 min</span><span class="pr">€20</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fmuWP5JrNtpL/7cab38d8-d3da-4265-a9bf-044fa719cb5f.jpeg" alt="Cut + Beard" loading="lazy"></div><div class="price-meta"><span class="nm">Normal Cut + Beard Trim</span><span class="dur">40 min</span><span class="pr">€18</span></div></div>
+          <div class="price-row"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fwVjZlbyZTdu/2933544e-5c83-458b-99cb-f53474a46efc.jpeg" alt="Fade + Wash" loading="lazy"></div><div class="price-meta"><span class="nm">Skin Fade + Wash</span><span class="dur">35 min</span><span class="pr">€18</span></div></div>
+          <div class="price-row feat"><div class="cut-tile"><img src="https://images.setmore.com/files/img/fTitWrmhVhXZ/ed39f02d-04c1-4419-9739-d9ee834b903e.jpeg" alt="Full Package" loading="lazy"></div><div class="price-meta"><span class="nm">Full Grooming Package</span><span class="dur">50 min</span><span class="pr">€22+</span></div></div>
+        </div>
+      </div>
+
+      <div class="menu-book"><button class="btn btn-yellow bk-open">Book From The Board →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ QUOTE ════ -->
+<section class="quote">
+  <div class="quote-tex"></div>
+  <blockquote>
+    <span class="mark">"</span>
+    <q>If you want a good barber<br>you have to deal with a busy barber</q>
+    <cite>— House Rule at BAM'S</cite>
+  </blockquote>
+</section>
+
+<!-- ════ THE BOYS — garage door reveal ════ -->
+<section class="sec" id="team">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eyebrow">The Craftsmen</span>
+      <h2>Meet <span class="y">The Boys</span></h2>
+      <p>Three pairs of hands. One standard. Pick your barber, pick your colour.</p>
+    </div>
+    <div class="garage rv" id="garage">
+      <div class="garage-frame">
+        <div class="team-grid">
+          <article class="barber drew tilt">
+            <div class="b-photo"><span class="b-tag">The Owner</span><img src="https://avatar.anywhere.app/files/img/fja8oon5xnTh/aw-image-397.jpeg" alt="Drew" loading="lazy"/></div>
+            <div class="b-color-bar"></div>
+            <div class="b-body">
+              <div class="b-name">Drew</div>
+              <div class="b-role">Master Barber · Owner</div>
+              <p class="b-bio">West End-trained, fade specialist, and the reason 647 clients keep coming back.</p>
+              <button class="b-btn bk-open" data-barber="Drew">Book with Drew →</button>
+            </div>
+          </article>
+          <article class="barber tony tilt">
+            <div class="b-photo"><span class="b-tag">The Teacher</span><img src="https://avatar.anywhere.app/files/img/fi3ZaUySeErE/profilepic.png" alt="Tony D" loading="lazy"/></div>
+            <div class="b-color-bar"></div>
+            <div class="b-body">
+              <div class="b-name">Tony D</div>
+              <div class="b-role">Senior Barber</div>
+              <p class="b-bio">Decades of mastery and the steady hand that raised the next generation.</p>
+              <button class="b-btn bk-open" data-barber="Tony D">Book with Tony D →</button>
+            </div>
+          </article>
+          <article class="barber anton tilt">
+            <div class="b-photo"><span class="b-tag">The Energy</span><img src="https://avatar.anywhere.app/files/img/fmoekLsyUJo9/aw-image-986.jpeg" alt="Antonis" loading="lazy"/></div>
+            <div class="b-color-bar"></div>
+            <div class="b-body">
+              <div class="b-name">Antonis</div>
+              <div class="b-role">Barber</div>
+              <p class="b-bio">Sharp fades, clean lines, great energy. Precision and personality every time.</p>
+              <button class="b-btn bk-open" data-barber="Antonis">Book with Antonis →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="garage-door" aria-hidden="true">
+        <div class="garage-label">OPENING…</div>
+        <div class="garage-rail"><div class="garage-handle"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GALLERY (photos open in lightbox) ════ -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eyebrow">The Mancave</span>
+      <h2>Inside <span class="y">The Shop</span></h2>
+      <p>Superheroes, movie posters, the lot. This is where the boys hang.</p>
+    </div>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item big rv"><img src="https://images.setmore.com/files/img/fTitWrmhVhXZ/ed39f02d-04c1-4419-9739-d9ee834b903e.jpeg" alt="Shop interior" loading="lazy"/></div>
+    <div class="gal-item rv" data-d="1"><img src="https://images.setmore.com/files/img/fFMJW4krDf5i/6baec838-63d5-4c77-af5a-e1e54677ba12.jpeg" alt="Barber at work" loading="lazy"/></div>
+    <div class="gal-item rv" data-d="2"><img src="https://images.setmore.com/files/img/fMSUUyMfvOgr/aed460fa-bd11-4869-af95-4485945492c0.jpeg" alt="Shop detail" loading="lazy"/></div>
+    <div class="gal-item tall rv" data-d="1"><img src="https://images.setmore.com/files/img/fmuWP5JrNtpL/7cab38d8-d3da-4265-a9bf-044fa719cb5f.jpeg" alt="Haircut detail" loading="lazy"/></div>
+    <div class="gal-item rv" data-d="2"><img src="https://images.setmore.com/files/img/fML7eYxjkxxK/478c6470-c731-42b4-973f-9137d98c89db.jpeg" alt="Interior" loading="lazy"/></div>
+    <div class="gal-item wide rv" data-d="3"><img src="https://images.setmore.com/files/img/fwVjZlbyZTdu/2933544e-5c83-458b-99cb-f53474a46efc.jpeg" alt="Work detail" loading="lazy"/></div>
+    <div class="gal-item rv" data-d="1"><img src="https://images.setmore.com/files/img/fz1bIn4Uudl5/66747ef5-df75-45b4-88b1-06402c137292.jpeg" alt="Interior detail" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section class="sec" id="about">
+  <div class="about-grid">
+    <div class="about-img rv"><img src="https://images.setmore.com/files/img/fMSUUyMfvOgr/aed460fa-bd11-4869-af95-4485945492c0.jpeg" alt="BAM'S BARBERS" loading="lazy"/></div>
+    <div class="about-txt rv">
+      <span class="eyebrow">Our Story</span>
+      <h2>London Craft,<br><span class="y">Larnaca Home</span></h2>
+      <p>BAM'S BARBERS has been a cornerstone of Larnaca's grooming scene since 2015. Behind every cut is <b>over 25 years of hands-on experience from West End London</b> — one of the world's most demanding barbering environments.</p>
+      <p>Our shop is a proper mancave — superhero gear, movie posters, the works — and everyone's welcome regardless of age or hair type. No rush. No shortcuts. You walk out looking your best.</p>
+      <div class="about-stats">
+        <div class="astat"><b class="counter" data-target="10">0</b><span>Years in Larnaca</span></div>
+        <div class="astat"><b class="counter" data-target="25">0</b><span>Years Craft</span></div>
+        <div class="astat"><b class="counter" data-target="647">0</b><span>Happy Reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ REVIEWS ════ -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="rev-hero rv">
+      <span class="rev-big">4.9</span>
+      <div><span class="rev-stars">★★★★★</span><p class="rev-count">Based on <strong>647 reviews</strong><br>Larnaca's most-loved barbershop</p></div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card rv" data-d="1"><div class="r-stars">★★★★★</div><p class="r-text">"Best fade I've had in Cyprus, period. You can feel the London experience the moment you sit in the chair."</p><div class="r-name">Verified Client</div></div>
+      <div class="rev-card rv" data-d="2"><div class="r-stars">★★★★★</div><p class="r-text">"Great with my son and great with me. Clean shop, welcoming atmosphere, sharp result every single visit."</p><div class="r-name">Verified Client</div></div>
+      <div class="rev-card rv" data-d="3"><div class="r-stars">★★★★★</div><p class="r-text">"The full grooming package is worth every cent. Booked in 30 seconds online. Won't go anywhere else."</p><div class="r-name">Verified Client</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ VISIT ════ -->
+<section class="sec" id="visit">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eyebrow">Find Us</span>
+      <h2>Visit <span class="y">The Shop</span></h2>
+      <p>In the heart of Larnaca. Walk in or book ahead.</p>
+    </div>
+  </div>
+  <div class="visit-grid">
+    <div class="v-card rv">
+      <h3>Opening Hours</h3>
+      <table class="hours" id="hours-t"><tbody>
+        <tr data-day="1"><td>Monday</td><td>9:00 – 18:00</td></tr>
+        <tr data-day="2"><td>Tuesday</td><td>9:00 – 18:00</td></tr>
+        <tr data-day="3"><td>Wednesday</td><td>9:00 – 18:00</td></tr>
+        <tr data-day="4"><td>Thursday</td><td class="cl">Closed</td></tr>
+        <tr data-day="5"><td>Friday</td><td>9:00 – 19:00</td></tr>
+        <tr data-day="6"><td>Saturday</td><td>9:00 – 17:00</td></tr>
+        <tr data-day="0"><td>Sunday</td><td class="cl">Closed</td></tr>
+      </tbody></table>
+      <ul class="contacts">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" stroke="currentColor"/><circle cx="12" cy="10" r="3" stroke="currentColor"/></svg><span>46 Dimitriou and Karaoli, Larnaka 6021, Cyprus</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke="currentColor"/></svg><a href="tel:+35799750221">+357 99 750221</a></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor"/><path d="m22 7-10 6L2 7" stroke="currentColor"/></svg><a href="mailto:andrewkoutsoftas1@gmail.com">andrewkoutsoftas1@gmail.com</a></li>
+      </ul>
+      <button class="btn btn-yellow bk-open" style="margin-top:24px;width:100%">Book Online →</button>
+    </div>
+    <div class="map rv"><iframe title="BAM'S BARBERS map" src="https://maps.google.com/maps?q=46%20Dimitriou%20and%20Karaoli%2C%20Larnaka%206021%2C%20Cyprus&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta">
+  <div class="wrap rv">
+    <span class="eyebrow">Ready When You Are</span>
+    <h2>Grab Your <span class="y">Chair</span></h2>
+    <p>Under a minute to book. Pick your barber, pick your slot, we handle the rest.</p>
+    <button class="btn btn-yellow pulse bk-open" style="font-size:1rem;padding:19px 42px">Book Now at BAM'S →</button>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-name">BAM'S <span class="y">BARBERS</span></div>
+        <p>Larnaca's mancave barbershop since 2015. Classic craft, modern cuts, 25 years of West End London experience.</p>
+      </div>
+      <div><h4>Navigate</h4><ul>
+        <li><a href="#services">The Cuts</a></li>
+        <li><a href="#team">The Boys</a></li>
+        <li><a href="#gallery">The Shop</a></li>
+        <li><a href="#visit">Visit & Hours</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="tel:+35799750221">+357 99 750221</a></li>
+        <li><a href="mailto:andrewkoutsoftas1@gmail.com">Email Us</a></li>
+        <li>46 Dimitriou & Karaoli, Larnaka</li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr"></span> BAM'S BARBERS · Larnaca</span>
+      <span>Mon–Wed & Fri–Sat · Closed Thu & Sun</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════ MOBILE BOOK BAR ════ -->
+<div class="mob-bar"><button class="btn btn-yellow pulse bk-open">Book Your Chair →</button></div>
+
+<script>
+/* ─── YEAR ─── */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ─── NAV SCROLL ─── */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+/* ─── MOBILE MENU ─── */
+const burger = document.getElementById('burger');
+const mobMenu = document.getElementById('mob-menu');
+burger.addEventListener('click', () => {
+  const open = mobMenu.classList.toggle('open');
+  burger.classList.toggle('x', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) history.pushState({menu:true}, '');
+});
+mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobMenu.classList.remove('open'); burger.classList.remove('x'); document.body.style.overflow = '';
+  if (history.state && history.state.menu) history.back();
+}));
+
+/* ─── SCROLL REVEAL ─── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* ─── COUNTERS ─── */
+const cObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.target;
+    let n = 0; const step = Math.max(1, Math.round(target / 45));
+    const tick = () => { n += step; el.textContent = n >= target ? target : n; if (n < target) requestAnimationFrame(tick); };
+    tick(); cObs.unobserve(el);
+  });
+}, {threshold:.5});
+document.querySelectorAll('.counter').forEach(c => cObs.observe(c));
+
+/* ─── SERVICE TABS ─── */
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('show'));
+    tab.classList.add('active');
+    document.getElementById('p-' + tab.dataset.p).classList.add('show');
+  });
+});
+
+/* ─── HIGHLIGHT TODAY ─── */
+const todayRow = document.querySelector('#hours-t tr[data-day="' + new Date().getDay() + '"]');
+if (todayRow) todayRow.classList.add('today');
+
+
+/* ─── BARBER CARD 3D TILT ─── */
+if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `rotateY(${px*6}deg) rotateX(${-py*6}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
+
+
+/* ─── GARAGE DOOR — opens/closes every scroll-past ─── */
+const garage = document.getElementById('garage');
+if (garage){
+  const gio = new IntersectionObserver(es => es.forEach(e => garage.classList.toggle('open', e.isIntersecting)), {threshold:.35});
+  gio.observe(garage);
+}
+
+/* ─── GALLERY LIGHTBOX ─── */
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+function openLB(src, alt){ lbImg.src = src; lbImg.alt = alt || ''; lb.classList.add('open'); document.body.style.overflow = 'hidden'; history.pushState({lb:true}, ''); }
+function closeLB(fromPop){ lb.classList.remove('open'); document.body.style.overflow = ''; if (!fromPop && history.state && history.state.lb) history.back(); }
+document.querySelectorAll('.gal-item').forEach(it => {
+  it.addEventListener('click', () => { const img = it.querySelector('img'); if (img) openLB(img.src, img.alt); });
+});
+document.getElementById('lb-close').addEventListener('click', () => closeLB(false));
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(false); });
+
+/* ─── BOOKING MODAL ─── */
+const overlay = document.getElementById('bk-overlay');
+const bkIframe = document.getElementById('bk-iframe');
+const BOOK_URL = 'https://bamsbarbers.setmore.com/book';
+const STAFF = { 'Drew': BOOK_URL, 'Tony D': BOOK_URL, 'Antonis': BOOK_URL };
+function openBooking(barber){
+  const url = (barber && STAFF[barber]) ? STAFF[barber] : BOOK_URL;
+  if (bkIframe.dataset.cur !== url){ bkIframe.src = url; bkIframe.dataset.cur = url; }
+  overlay.classList.add('open'); document.body.style.overflow = 'hidden';
+  history.pushState({booking:true}, '');
+}
+function closeBooking(fromPop){
+  overlay.classList.remove('open'); document.body.style.overflow = '';
+  if (!fromPop && history.state && history.state.booking) history.back();
+}
+document.querySelectorAll('.bk-open').forEach(b => b.addEventListener('click', () => openBooking(b.dataset.barber)));
+document.getElementById('bk-close').addEventListener('click', () => closeBooking(false));
+overlay.addEventListener('click', e => { if (e.target === overlay) closeBooking(false); });
+
+/* ─── POPSTATE (back button) ─── */
+addEventListener('popstate', () => {
+  if (overlay.classList.contains('open')) closeBooking(true);
+  else if (lb && lb.classList.contains('open')) closeLB(true);
+  else if (mobMenu.classList.contains('open')){ mobMenu.classList.remove('open'); burger.classList.remove('x'); document.body.style.overflow = ''; }
+});
+
+/* ─── ESC KEY ─── */
+addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (overlay.classList.contains('open')) closeBooking(false);
+  else if (lb && lb.classList.contains('open')) closeLB(false);
+});
+</script>
+</body>
+</html>
